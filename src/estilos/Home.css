@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+
+body{
+  display: table;
+}
+
+.login{
+  margin-left: 30px;
+  margin-top: 30px;
+  font-size: xx-large;
+  cursor:pointer;
+  width: fit-content;
+  position:fixed;
+}
+
+.Inicio {
+  font-family: 'Knewave', cursive;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 60%;
+  height: max-content;
+  margin: auto;
+  border-radius: 20px;
+  background-color: #ADF7B6;
+  text-align: center;
+  padding-block: 3%;
+  padding-inline: 3%;
+  font-size: 26px;
+}
+
+.btnInicio{
+  cursor: pointer;
+}
+
+#cocky{
+  position: absolute;
+  width: 14%;
+  top: -70%;
+  bottom: 0;
+  left: 0;
+  right: -65%;
+  margin: auto;
+  transform: rotate(20deg);
+}
+#puky{
+  position: absolute;
+  width: 14%;
+  top: 0;
+  bottom: -65%;
+  left: 65%;
+  right: 0;
+  margin: auto;
+  transform: rotate(140deg);
+}
+
+#kuky{
+  position: absolute;
+  width: 14%;
+  top: -70%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#duky{
+  position: absolute;
+  width: 14%;
+  top: 0;
+  bottom: -65%;
+  left: 0;
+  right: 65%;
+  margin: auto;
+}
+
+#diky{
+  position: absolute;
+  width: 14%;
+  top: -70%;
+  bottom: 0;
+  left: -65%;
+  right: 0;
+  margin: auto;
+}
+
+#miky{
+  position: absolute;
+  width: 14%;
+  top: 0;
+  bottom: -65%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}

@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Inicio from './componentes/Inicio'
+import Home from './componentes/Home'
+import Registrar from './componentes/Registrar'
+import { createBrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom';
+import Dashboard from './Dashboard';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+const router = createBrowserRouter([
+    {path:'/', element: <Home/>},
+    {path:'/register', element:<Registrar/>},
+    {path:'/inicio', element:<Inicio/>},
+    {path:'/dashboard', element:<Dashboard/>}
+  ])
+
+
+function fondo(camb){
+    
+    
+
+    var elem = document.getElementById("body");
+
+        if(camb){
+            elem.style.background = '#033F63';
+        }else{
+            elem.style.background = '#A0CED9';
+        }
+
 }
 
-export default App;
+
+function App() {
+
+    
+
+  return (
+    <div className='router' id='router'>
+        <RouterProvider router={router}/>
+    </div>
+  )
+}
+export {fondo}
+export default App
