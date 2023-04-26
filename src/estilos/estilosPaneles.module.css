@@ -1,0 +1,51 @@
+.logoXXL{
+    font-size: 1100%;
+    text-align: center;
+}
+
+.encabezadoPanel{
+    display: flex;
+    justify-content: center;
+}
+.encabezadoTitulos{
+    margin-top: 25px;
+    text-align: justify;
+    font-size: xx-large;
+}
+h1, h3, h5{
+    
+    margin: 0;
+}
+.panelPerfil{
+    display: grid;
+}
+.nombreP{
+    grid-column: 1;
+    grid-row: 1;
+}
+.apellidoP{
+    grid-column: 2;
+    grid-row: 1;
+}
+.apellidoM{
+    grid-column: 3;
+    grid-row: 1;
+}
+.correo{
+    grid-column: 1/3;
+    grid-row: 2;
+}
+.contra{
+    grid-column: 1/2;
+    grid-row: 3;
+}
+.escuela{
+    grid-column: 1/4;
+    grid-row: 4;
+}
+.perfilBtns{
+    grid-column: 1/4;
+    grid-row: 6;
+    flex-direction: row;
+    justify-content: space-between;
+}
