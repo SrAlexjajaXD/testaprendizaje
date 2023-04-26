@@ -12,8 +12,6 @@ function PanelPerfil() {
   var correo = "antoniaalberson@gmail.com"
 
 
-
-
   return (
     <div className='dashboard'>
       <nav className={styles.encabezadoPanel}>
@@ -28,12 +26,12 @@ function PanelPerfil() {
       </nav>
       <hr color='#FEDC97'/>
         <form className={styles.panelPerfil}>
-          <input type="text" name="nombre" value={nombre} className={styles.nombreP}/>
-          <input type="text" name="ap" value={ap} className={styles.apellidoP}/>
-          <input type="text" name="am" value={am} className={styles.apellidoM}/>
-          <input type="email" name="correo" value={correo} className={styles.correo}/>
-          <input type="password" name="contrasena" value="asdfasdfasd" className={styles.contra}/>
-          <input type="text" name="escuela" value={escuela} className={styles.escuela}/>
+          <input type="text" name="nombre" value={nombre} />
+          <input type="text" name="ap" value={ap} />
+          <input type="text" name="am" value={am} />
+          <input type="email" name="correo" value={correo} />
+          <input type="password" name="contrasena" value="asdfasdfasd" />
+          <input type="text" name="escuela" value={escuela}/>
           <div className={styles.perfilBtns}>
             <button>Modificar</button>
             <button>Generar</button>
