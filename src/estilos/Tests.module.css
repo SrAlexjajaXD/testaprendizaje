@@ -1,0 +1,23 @@
+.dashboardTests {
+    background-color: #033F63;
+    border-radius:50px;
+    text-align: center;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content:flex-start;
+    height: auto;
+    width: 100%;
+    margin: 25px 25px 25px 0px;
+    padding: 20px;
+}
+
+.encabezado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -3%;
+}
+.contenedorCampos button{
+    height: 300px;
+}

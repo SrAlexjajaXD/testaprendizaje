@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { CiAlignLeft, CiUser, CiFaceSmile, CiFileOn } from "react-icons/ci";
 import "./estilos/dashboard.css"
 import Panel from './componentes/Panel';
+import styles1 from './estilos/estilosPaneles.module.css'
 
 
 function Dashboard() {

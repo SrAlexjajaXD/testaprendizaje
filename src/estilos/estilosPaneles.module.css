@@ -1,29 +1,37 @@
+
 .logoXXL{
-    font-size: 1100%;
+    padding-top: 15px;
+    font-size: 13rem;
     text-align: center;
 }
 
 .encabezadoPanel{
     display: flex;
     justify-content: center;
+    align-items:start;
 }
 .encabezadoTitulos{
     margin-top: 25px;
-    text-align: justify;
-    font-size: xx-large;
+    text-align:left;
+    font-size: 2rem;
 }
-h1, h3, h5{
-    
-    margin: 0;
+.encabezadoTitulos h1, h3, h5{
+    margin-block: 5px;
 }
-.panelPerfil{
+.panel{
+    background-color: #033F63;
+    height: 86vh;
+    width: 100%;
+    margin: 25px 25px 25px 0px;
+    padding: 20px;
+    border-radius: 50px;
+    overflow: auto;
+}
+.panel::-webkit-scrollbar {
+    display: none;
+    width: 1px;
+}
+.contenido{
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-}
-.perfilBtns{
-    grid-column: 1/4;
-    grid-row: 6;
-    flex-direction: row;
-    justify-content: space-between;
 }
