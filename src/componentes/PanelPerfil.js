@@ -25,42 +25,42 @@ function PanelPerfil() {
           <h5>{correo}</h5>
         </div>
       </nav>
-      <hr color='#FEDC97'/>
+      <hr color='#18206F'/>
       <form>
-      <div className={styles.contenedorCampos}>
-            <div className={styles.campo}>
-              <input className={styles.inputText} type="text" value={nombre}/>
-            </div>
-
-            <div className={styles.campo}>
-              <input className={styles.inputText} type="text" value={app}/>
-            </div>
-
-            <div className={styles.campo}>
-              <input className={styles.inputText} type="text" value={apm}/>
-            </div>
-
-            <div className={styles.campo}>
-              <input className={styles.inputText} type="email" value={correo}/>
-            </div>
-
-            <div className={styles.campo}>
-              <input className={styles.inputText} type="password" value={123456}/>
-            </div>
-
-            <div className={styles.campo}>
-              <input className={styles.inputText} type="text" value={escuela}/>
-            </div>
-      </div>
-           <div className={styles.botones}>
-              <div className={styles.botonesL}>
-                <button>Guardar</button>
-                <button>Generar</button>
+        <div className={styles.contenedorCampos}>
+              <div className={styles.campo}>
+                <input className={styles.inputText} type="text" value={nombre}/>
               </div>
-              <div className={styles.botonesR}>
-                <button>Cerrar Sesión</button>
+
+              <div className={styles.campo}>
+                <input className={styles.inputText} type="text" value={app}/>
               </div>
-            </div>
+
+              <div className={styles.campo}>
+                <input className={styles.inputText} type="text" value={apm}/>
+              </div>
+
+              <div className={styles.campo}>
+                <input className={styles.inputText} type="email" value={correo}/>
+              </div>
+
+              <div className={styles.campo}>
+                <input className={styles.inputText} type="password" value={123456}/>
+              </div>
+
+              <div className={styles.campo}>
+                <input className={styles.inputText} type="text" value={escuela}/>
+              </div>
+        </div>
+            <div className={styles.botones}>
+                <div className={styles.botonesL}>
+                  <button>Guardar</button>
+                  <button>Generar</button>
+                </div>
+                <div className={styles.botonesR}>
+                  <button>Cerrar Sesión</button>
+                </div>
+              </div>
       </form>
     </div>
   )

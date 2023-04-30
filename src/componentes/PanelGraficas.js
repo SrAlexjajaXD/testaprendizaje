@@ -16,7 +16,7 @@ function PanelGraficas() {
           <h5>Antonia Alberston</h5>
         </div>
       </nav>
-      <hr color='#FEDC97'/>
+      <hr color='#18206F'/>
         
         <div className='porcentaje'>
           <div className='container'>

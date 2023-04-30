@@ -8,7 +8,7 @@ import styles1 from './estilos/estilosPaneles.module.css'
 function Dashboard() {
 
   var b1 = document.getElementById("body");
-  b1.style.background = '#02314D';
+  b1.style.background = '#ffffff';
 
   const [pnel, setPanel]= useState(1)
 

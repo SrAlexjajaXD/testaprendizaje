@@ -16,7 +16,7 @@ function PanelAlumns() {
           <h5>Antonia Alberston</h5>
         </div>
       </nav>
-      <hr color='#FEDC97'/>
+      <hr color='#18206F'/>
       <div className={styles1.contenido}>
         <input type="text" name="text" value="Carlos"/>
         <input type="text" name="text" value="Monica"/>

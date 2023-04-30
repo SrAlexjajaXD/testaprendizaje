@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Knewave&family=Playfair+Display&display=swap');
 body{
     font-family: 'Playfair Display', serif;
-    background-color: #033F63;
+    background-color: #f1f1ef;
 }
 
 
 a{
     font-size: 26px;
-    color: #FEDC97;
 }
 .login{
     margin-left: 30px;
@@ -32,7 +31,7 @@ a{
     height: max-content;
     margin: auto;
     text-align: center;
-    color: #FEDC97;
+    color: #18206F;
 }
 
 form{
@@ -46,8 +45,8 @@ input{
     border: none;
     padding: 15px;
     border-radius: 18px;
-    background-color: #02314D;
-    color: #FEDC97;
+    background-color: #FFFF;
+    color: black;
     margin: 10px;
 }
 button{
@@ -56,8 +55,8 @@ button{
     border: none;
     padding: 15px;
     border-radius: 18px;
-    background-color: #FEDC97;
-    color: #02314D;
+    background-color: #18206F;
+    color: #f1f1ef;
     margin: 10px;
     cursor: pointer;
 }
@@ -65,7 +64,7 @@ button{
     text-decoration:underline;
     font-family: 'Playfair Display', serif;
     margin: 10px;
-    color: #FEDC97;
+    color: #18206F;
     font-size: 26px;
     cursor: pointer;
 }

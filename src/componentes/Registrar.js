@@ -6,7 +6,7 @@ import { CiCircleChevLeft } from "react-icons/ci";
 function Registrar() {
   return (
     <div>
-      <div className="login"><a href='/inicio'><CiCircleChevLeft color='#FEDC97'/></a></div>
+      <div className="login"><a href='/inicio'><CiCircleChevLeft color='#18206F'/></a></div>
       <div className="Login">
         <div className='logoInicio'><CiUser/></div>
         <form action="">

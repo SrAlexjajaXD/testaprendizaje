@@ -9,16 +9,16 @@ function Inicio() {
 
   return (
     <div>
-      <div className="login"><a href='/'><CiCircleChevLeft color='#FEDC97'/></a></div>
+      <div className="login"><a href='/'><CiCircleChevLeft color='#18206F'/></a></div>
       <div className='Login'>
         <div className='logoInicio'>
-            <CiUser color='#FEDC97'/>
+            <CiUser color='#18206F'/>
         </div>
         <form action="/dashboard" method=''>
             <input placeholder="Usuario" name="usuario" id="usuario"></input><br/>
             <input placeholder="Contraseña" name="contraseña" id="contraseña"></input><br/>
             <button type="submit">Iniciar sesión</button><br/>
-            <a id='register' href='/register'>Registrarse</a>
+            <a id='register' href='/register' color='#18206F'>Registrarse</a>
         </form>
       </div>
     </div>
