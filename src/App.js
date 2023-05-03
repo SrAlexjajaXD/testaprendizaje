@@ -6,39 +6,30 @@ import { createBrowserRouter, Route, RouterProvider, Routes } from 'react-router
 import Dashboard from './Dashboard';
 
 
-
+/* Se declaran las rutas de las paginas principales en el proyecyto con ayuda de biblioteca react-router-dom */
 const router = createBrowserRouter([
-    {path:'/', element: <Home/>},
-    {path:'/register', element:<Registrar/>},
-    {path:'/inicio', element:<Inicio/>},
-    {path:'/dashboard', element:<Dashboard/>}
-  ])
+  { path: '/', element: <Home /> },
+  { path: '/register', element: <Registrar /> },
+  { path: '/inicio', element: <Inicio /> },
+  { path: '/dashboard', element: <Dashboard /> }
+])
 
 
-function fondo(camb){
-    
-    
-
-    var elem = document.getElementById("body");
-
-        if(camb){
-            elem.style.background = '#033F63';
-        }else{
-            elem.style.background = '#A0CED9';
-        }
-
+function fondo(camb) {
+  var elem = document.getElementById("body");
+  if (!camb) {
+    elem.style.background = '#A0CED9';
+  }
 }
 
 
-function App() {
-
-    
-
+function App() { /* Funcion que retorna la renderizacion de acuerdo a la ruta estblecida en la URL */
   return (
     <div className='router' id='router'>
-        <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </div>
   )
 }
-export {fondo}
+
+export { fondo }
 export default App

@@ -2,7 +2,7 @@ const preguntas = [
   {
     titulo: "¿Qué es lo que te gusta más de tu cumpleaños?",
     opciones: [
-      { textoRespuesta: "Que te canten la mañanitas", getTipo: "A" },// el elemento getTipo se cambiara por getTipo, para obtener el tipo de aprendizaje para asi sumar a una variable el valor dependiendo de su tipo de aprendizaje
+      { textoRespuesta: "Que te canten la mañanitas", getTipo: "A" },
       { textoRespuesta: "La decoración de la fiesta", getTipo: "V" },
       { textoRespuesta: "Que te den abrazos", getTipo: "K"},
     ],

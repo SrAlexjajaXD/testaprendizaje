@@ -2,10 +2,9 @@ import React from 'react'
 import { CiUser } from "react-icons/ci";
 import "../estilos/Login.css"
 import { CiCircleChevLeft } from "react-icons/ci";
-import { fondo } from '../App';
 
 
-function Inicio() {
+function Inicio() { /* Muestra en pantalla la seccion para que el usuario docente pueda iniciar sesión */
 
   return (
     <div>

@@ -3,7 +3,7 @@ import '../estilos/Login.css'
 import { CiUser } from "react-icons/ci";
 import { CiCircleChevLeft } from "react-icons/ci";
 
-function Registrar() {
+function Registrar() { /* Muestra en pantalla la seccion para que el usuario se registre */
   return (
     <div>
       <div className="login"><a href='/inicio'><CiCircleChevLeft color='#18206F'/></a></div>
