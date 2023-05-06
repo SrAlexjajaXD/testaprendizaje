@@ -2,9 +2,42 @@ import React from 'react'
 import { CiUser } from "react-icons/ci";
 import "../estilos/Login.css"
 import { CiCircleChevLeft } from "react-icons/ci";
+import { useForm } from './useForm';
 
+const initialForm = {
+  nombre: "",
+  usuario: "",
+  correo: "",
+  institucion: "",
+  contraseña: "",
+  contraseña2: ""
+}
+const validationsForm = (form) => {
+  let errors = {};
+  let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
 
-function Inicio() { /* Muestra en pantalla la seccion para que el usuario docente pueda iniciar sesión */
+  if (!form.correo.trim()) {
+    errors.correo = " El correo electronico es necesario";
+  } else if (!regexEmail.test(form.correo.trim())) {
+    errors.correo = " El correo electronico no es valido";
+  }
+
+  if (!form.contraseña.trim()) {
+    errors.contraseña = " La contraseña es necesaria";
+  }
+
+  return errors;
+}
+
+const Inicio = ()=> { /* Muestra en pantalla la seccion para que el usuario docente pueda iniciar sesión */
+
+const { form,
+  errors,
+  loading,
+  response,
+  handleBlur,
+  handleChange,
+  handleSubmit1 } = useForm(initialForm, validationsForm)
 
   return (
     <div>
@@ -13,9 +46,9 @@ function Inicio() { /* Muestra en pantalla la seccion para que el usuario docent
         <div className='logoInicio'>
             <CiUser color='#18206F'/>
         </div>
-        <form action="/dashboard" method=''>
-            <input placeholder="Usuario" name="usuario" id="usuario"></input><br/>
-            <input placeholder="Contraseña" name="contraseña" id="contraseña"></input><br/>
+        <form onSubmit={handleSubmit1}>
+            <input placeholder="Correo electronico" name="correo" onBlur={handleBlur} onChange={handleChange} value={form.correo}></input><br/>
+            <input placeholder="Contraseña" name="contraseña" type='password' onBlur={handleBlur} onChange={handleChange} value={form.contraseña}></input><br/>
             <button type="submit">Iniciar sesión</button><br/>
             <a id='register' href='/register' color='#18206F'>Registrarse</a>
         </form>
