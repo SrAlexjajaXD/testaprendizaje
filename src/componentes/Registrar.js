@@ -7,9 +7,9 @@ import { useForm } from './useForm';
 const initialForm = {
   nombre: "",
   usuario: "",
+  escuela: "",
   correo: "",
-  institucion: "",
-  contraseña: "",
+  contra: "",
   contraseña2: ""
 }
 const validationsForm = (form) => {
@@ -33,15 +33,15 @@ const validationsForm = (form) => {
     errors.correo = " El correo electronico no es valido";
   }
 
-  if (!form.contraseña.trim()) {
-    errors.contraseña = " La contraseña es necesaria";
-  }else if(form.contraseña!=form.contraseña2){
+  if (!form.contra.trim()) {
+    errors.contra = " La contraseña es necesaria";
+  }else if(form.contra!=form.contraseña2){
     errors.contraseña=" Las contraseñas no coinciden"
   }
 
   if (!form.contraseña2.trim()) {
     errors.contraseña2 = " El contraseña es necesaria";
-  }else if(form.contraseña!=form.contraseña2){
+  }else if(form.contra!=form.contraseña2){
     errors.contraseña=" Las contraseñas no coinciden"
   }
 
@@ -66,9 +66,9 @@ const Registrar = () => { /* Muestra en pantalla la seccion para que el usuario 
         <form onSubmit={handleSubmit2}>
           <input placeholder="Nombre completo" name="nombre" type='text' onBlur={handleBlur} onChange={handleChange} value={form.nombre} />
           <input placeholder="Usuario" name="usuario" type='text' onBlur={handleBlur} onChange={handleChange} value={form.usuario}  /><br />
-          <input placeholder="Correo electrónico" name="correo" type='text' onBlur={handleBlur} onChange={handleChange} value={form.correo}  />
-          <input placeholder="Institución" name="institucion" type='text' onBlur={handleBlur} onChange={handleChange} value={form.institucion} /><br />
-          <input placeholder="Contraseña" name="contraseña" type='password' onBlur={handleBlur} onChange={handleChange} value={form.contraseña}  />
+          <input placeholder="Institución" name="escuela" type='text' onBlur={handleBlur} onChange={handleChange} value={form.escuela} />
+          <input placeholder="Correo electrónico" name="correo" type='text' onBlur={handleBlur} onChange={handleChange} value={form.correo}  /><br />
+          <input placeholder="Contraseña" name="contra" type='password' onBlur={handleBlur} onChange={handleChange} value={form.contra}  />
           <input placeholder="Repite contraseña" name="contraseña2" type='password' onBlur={handleBlur} onChange={handleChange} value={form.contraseña2} /><br />
           <button type='submit'>Registrarse</button><br />
         </form>

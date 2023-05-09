@@ -32,10 +32,47 @@
     display: none;
     width: 1px;
 }
-.contenido{
-    display: flex;
-    flex-direction: column;
-}
+
 .grafica{
     margin-left: 425px;
+}
+.contenido{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+.headerAlumnos{
+    grid-column: 1/3;
+    display: flex;
+    justify-content:space-around;
+    text-align: center;
+    gap: 20px;
+}
+.columnahead{
+    text-align: center;
+    color: #f1f1ef;
+    background-color: #18206F;
+    border-radius: 20px;
+    width: 100%;
+}
+.registrosNombres{
+    grid-column: 1;
+}
+.registrosTipos{
+    grid-column: 2;
+}
+.registrosN{
+    background-color: white;
+    font-size:x-large;
+    margin-block:.5vh;
+    padding: 10px;
+    border-radius: 15px;
+}
+.registrosT{
+    background-color: white;
+    font-size:x-large;
+    margin-block:.5vh;
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
 }
