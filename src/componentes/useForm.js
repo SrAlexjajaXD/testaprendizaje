@@ -41,15 +41,6 @@ export const useForm = (initialForm, validateForm) => {
         e.preventDefault();
         setErrors(validateForm(form));
 
-        const datos = {
-            id: 122,
-            nombre: "Pineda",
-            usuario: "gonzalito3000",
-            escuela: "ENUFC",
-            correo: "gonzalito@gmail.com",
-            contra: "gonzalito123"
-        }
-
         if (Object.keys(errors).length === 0) {
             setLoading(true);
             console.log(JSON.stringify(form))
@@ -67,24 +58,6 @@ export const useForm = (initialForm, validateForm) => {
                 console.log("ERROR EN LA SOLICITUD",error)
             })
 
-            // try {
-            //     console.log(JSON.stringify(form))
-
-            //     let res = await axios.post("http://localhost:3001/docentes",{
-            //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //         },
-            //         body: JSON.stringify({form
-            //         })
-            // })
-
-            //     console.log("RESPUESTA DEL API= " + res.json)
-            // } catch (error) {
-            //     console.log("ERROR EN EL CATCH= " + error)
-            // }
-
-
             Swal.fire({ icon: "success", title: "Registro exitoso", text: "Ya puedes iniciar sesión" }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "/inicio"
@@ -95,19 +68,18 @@ export const useForm = (initialForm, validateForm) => {
         }
     };
 
-    const handleSubmit3 = (e) => {
-        e.preventDefault();
-        setErrors(validateForm(form));
-
-        if (Object.keys(errors).length === 0) {
-            Swal.fire({ icon: "success", title: "Datos guardados exitosamente" }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "/dashboard"
-                }
+    const handleSubmit3 = async (e) => {
+        await axios({method:'POST', url:'http://localhost:3001/alumnos', data: {
+                id_docente: form.id_docente,
+                nombre: form.nombre,
+                tipo:form.tipo
+            }})
+            .then(function(respuesta){
+                console.log(respuesta.data);
+            }).catch(function(error){
+                console.log("ERROR EN LA SOLICITUD",error)
             })
-        } else {
-            Swal.fire({ icon: "error", title: "Ocurrio un error en los campos:", text: Object.values(errors) })
-        }
+
     };
 
     return {

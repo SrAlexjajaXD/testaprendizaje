@@ -28,7 +28,6 @@
     font-size: 300px;
     position: absolute;
     left: 20%;
-    margin-top: -2%;
 }
 
 .hr{
@@ -41,5 +40,7 @@
 }
 .grafica{
     text-align: center;
-    margin-left: 40px;
+    margin-top: 3%;
+    background-color:aliceblue ;
+
 }

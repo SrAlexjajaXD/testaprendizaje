@@ -8,7 +8,7 @@ function PanelAlumns() {
   const [data, setData] = useState(null)
 
   const consulta = () =>{
-    axios.get("http://localhost:3001/alumnos").then(response=>{
+    axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos").then(response=>{
       setData(response.data)
     })
   }

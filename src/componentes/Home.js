@@ -3,10 +3,28 @@ import styles from '../estilos/Home.module.css';
 import { fondo } from "../App";
 import { useState } from "react"
 import preguntas from "./preguntas"
+import { useForm } from "./useForm";
 
 const personajes = require.context('../../public/personajes', true)
 
+const initialForm = {
+  id_docente: 1,
+  nombre: "",
+  tipo: ""
+}
 
+const validationsForm = (form) => {
+  let errors = {};
+  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+
+  if (!form.nombre.trim()) {
+    errors.nombre = " El nombre es necesario";
+  } else if (!regexName.test(form.nombre.trim())) {
+    errors.nombre = " El nombre sólo acepta letras y espacios en blanco";
+  }
+
+  return errors;
+}
 
 function Home() {
 
@@ -17,6 +35,14 @@ function Home() {
   const [puntuacionV, setPuntuacionV] = useState(0);
   const [puntuacionK, setPuntuacionK] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+
+  const { form,
+    errors,
+    loading,
+    response,
+    handleBlur,
+    handleChange,
+    handleSubmit3 } = useForm(initialForm, validationsForm);
 
 
 
@@ -32,31 +58,52 @@ function Home() {
     }
   }
 
-  if (isFinished)/* Si esta finalizado el cuestionario, regresa la siguiente pantalla con los puntajes */
+  if (puntuacionA > puntuacionV) {
+    form.tipo = "Auditivo"
+
+  } else if (puntuacionV > puntuacionK) {
+    form.tipo = "Visual"
+
+  } else if (puntuacionK > puntuacionA) {
+    form.tipo = "Kinestesico"
+
+  }
+
+  if (isFinished) {/* Si esta finalizado el cuestionario, regresa la siguiente pantalla con los puntajes */
+
+
+  
     return (
       <main className="app">
         <div className="juego-terminado">
           <span>
             {" "}
-            Obtuviste {puntuacionA} de {preguntas.length}{" "}<br />
-            Obtuviste {puntuacionV} de {preguntas.length}{" "}<br />
-            Obtuviste {puntuacionK} de {preguntas.length}{" "}
+            Auditivo {puntuacionA} de {preguntas.length}{" "}<br />
+            Visual {puntuacionV} de {preguntas.length}{" "}<br />
+            Kinestesico {puntuacionK} de {preguntas.length}{" "}
           </span>
           <button onClick={() => (window.location.href = "/")}>
             Volver a jugar
           </button>
+          <button onClick={() => handleSubmit3()}>
+            Enviar datos
+          </button>
         </div>
       </main>
     );
+  }
   if (stared == 1) /* Lo siguiente se muestra despues de que el usuario haya dado click en la pantalla inicial, y es donde se ingresa el codigo de profesor */
     return (
       <div>
         <div className={styles.login} onClick={fondo(false)}><a href='/inicio'><AiOutlineUser color="black" /></a></div>
         <div>
           <img src={personajes(`./PUKY.png`)} className={styles.puky}></img>
-          <div className={styles.btnInicio} onClick={() => setStared(2)}>
+          <div className={styles.btnInicio} >
             <div className={styles.Inicio}>
+              <input type="number" name="id_docente" value={form.id_docente} onChange={handleChange} />
               <h1>Ingresa el codigo de tu maestro</h1>
+              <button onClick={() => setStared(0)}>ANTERIOR</button>
+              {form.id_docente.length >= 4 && <button type="" onClick={() => setStared(2)}>SIGUIENTE</button>}
             </div>
           </div>
           <img src={personajes(`./DIKY.png`)} className={styles.diky}></img>
@@ -70,9 +117,12 @@ function Home() {
         <div className={styles.login} onClick={fondo(false)}><a href='/inicio'><AiOutlineUser color="black" /></a></div>
         <div>
           <img src={personajes(`./PUKY.png`)} className={styles.puky}></img>
-          <div className={styles.btnInicio} onClick={() => setStared(3)}>
+          <div className={styles.btnInicio}>
             <div className={styles.Inicio}>
+              <input type="text" name="nombre" value={form.nombre} onChange={handleChange} />
               <h1>Ingresa tu nombre y empieza con el test</h1>
+              <button onClick={() => setStared(1)}>ANTERIOR</button>
+              {form.nombre.length > 0 && <button type="" onClick={() => setStared(3)}>SIGUIENTE</button>}
             </div>
           </div>
           <img src={personajes(`./DIKY.png`)} className={styles.diky}></img>
