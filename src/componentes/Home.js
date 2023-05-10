@@ -4,11 +4,12 @@ import { fondo } from "../App";
 import { useState } from "react"
 import preguntas from "./preguntas"
 import { useForm } from "./useForm";
+import Swal from "sweetalert2";
 
 const personajes = require.context('../../public/personajes', true)
 
 const initialForm = {
-  id_docente: 1,
+  id_docente: 1111,
   nombre: "",
   tipo: ""
 }
@@ -85,7 +86,13 @@ function Home() {
           <button onClick={() => (window.location.href = "/")}>
             Volver a jugar
           </button>
-          <button onClick={() => handleSubmit3()}>
+          <button onClick={() =>{
+             handleSubmit3()
+             Swal.fire({icon:"success", title:"Registro guardado", text:form.nombre +" tus datos ya estan guardados"}).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.href = "/"
+              }})
+            }}>
             Enviar datos
           </button>
         </div>
@@ -97,16 +104,15 @@ function Home() {
       <div>
         <div className={styles.login} onClick={fondo(false)}><a href='/inicio'><AiOutlineUser color="black" /></a></div>
         <div>
-          <img src={personajes(`./PUKY.png`)} className={styles.puky}></img>
+          
           <div className={styles.btnInicio} >
             <div className={styles.Inicio}>
-              <input type="number" name="id_docente" value={form.id_docente} onChange={handleChange} />
+              <input type="number" name="id_docente" className={styles.inputs} value={form.id_docente} onChange={handleChange} />
               <h1>Ingresa el codigo de tu maestro</h1>
-              <button onClick={() => setStared(0)}>ANTERIOR</button>
-              {form.id_docente.length >= 4 && <button type="" onClick={() => setStared(2)}>SIGUIENTE</button>}
             </div>
           </div>
-          <img src={personajes(`./DIKY.png`)} className={styles.diky}></img>
+          <img src={personajes(`./PUKY2.png`)} className={styles.puky2} onClick={() => setStared(2)}></img>
+          <img src={personajes(`./DIKY2.png`)} className={styles.diky2} onClick={() => setStared(0)} alt="Pantalla anterior" title="Pagina anterior"/>
         </div>
       </div>
     );
@@ -116,16 +122,14 @@ function Home() {
       <div>
         <div className={styles.login} onClick={fondo(false)}><a href='/inicio'><AiOutlineUser color="black" /></a></div>
         <div>
-          <img src={personajes(`./PUKY.png`)} className={styles.puky}></img>
           <div className={styles.btnInicio}>
             <div className={styles.Inicio}>
-              <input type="text" name="nombre" value={form.nombre} onChange={handleChange} />
+              <input type="text" name="nombre" value={form.nombre} className={styles.inputs} onChange={handleChange} />
               <h1>Ingresa tu nombre y empieza con el test</h1>
-              <button onClick={() => setStared(1)}>ANTERIOR</button>
-              {form.nombre.length > 0 && <button type="" onClick={() => setStared(3)}>SIGUIENTE</button>}
             </div>
           </div>
-          <img src={personajes(`./DIKY.png`)} className={styles.diky}></img>
+          <img src={personajes(`./PUKY2.png`)} className={styles.puky2} onClick={() => setStared(3)}></img>
+          <img src={personajes(`./DIKY2.png`)} className={styles.diky2} onClick={() => setStared(1)} alt="Pantalla anterior" title="Pagina anterior"/>
         </div>
       </div>
     );
@@ -160,7 +164,7 @@ function Home() {
       <div>
         <img src={personajes(`./COCKY.png`)} className={styles.cocky}></img>
         <img src={personajes(`./PUKY.png`)} className={styles.puky}></img>
-        <div className={styles.btnInicio} onClick={() => setStared(1)}>
+        <div className={styles.btnInicioP} onClick={() => setStared(1)}>
           <div className={styles.Inicio}>
             <h1>¿QUIERES SABER QUE PERSONAJE ERES?</h1>
           </div>

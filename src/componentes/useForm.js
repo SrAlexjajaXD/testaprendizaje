@@ -69,7 +69,7 @@ export const useForm = (initialForm, validateForm) => {
     };
 
     const handleSubmit3 = async (e) => {
-        await axios({method:'POST', url:'http://localhost:3001/alumnos', data: {
+        await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos', data: {
                 id_docente: form.id_docente,
                 nombre: form.nombre,
                 tipo:form.tipo
