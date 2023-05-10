@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { helpHttp } from "../helpers/helpHttp";
+import { useFetch } from "./useFetch";
 
 
 
@@ -10,6 +11,8 @@ export const useForm = (initialForm, validateForm) => {
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const [response, setResponse] = useState(null);
+
+    const {data}=useFetch
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -81,6 +84,7 @@ export const useForm = (initialForm, validateForm) => {
             })
 
     };
+
 
     return {
         form,

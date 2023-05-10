@@ -2,18 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { CiFaceSmile } from "react-icons/ci";
 import styles1 from '../estilos/estilosPaneles.module.css'
 import axios from 'axios';
+import { useFetch } from './useFetch';
 
 function PanelAlumns() {
 
+
   const [data, setData] = useState(null)
 
-  const consulta = () =>{
     axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos").then(response=>{
       setData(response.data)
     })
-  }
 
-  consulta()
 
   return (
     <div className={styles1.panel}>

@@ -1,7 +1,9 @@
 import React from 'react'
 import { CiFileOn } from "react-icons/ci";
+import { HiDocumentText, HiDocumentAdd } from "react-icons/hi";
 import styles from '../estilos/Perfil.module.css';
 import styles1 from '../estilos/estilosPaneles.module.css'
+import Swal from 'sweetalert2';
 
 function PanelTest() {
   return (
@@ -11,14 +13,38 @@ function PanelTest() {
           <CiFileOn className={styles1.logoXXL}/>
         </div>
         <div className={styles1.encabezadoTitulos}>
-          <h1>Listado de Alumnos</h1>
-          <h3>Test de tipo de aprendizaje</h3>
+          <h1>Listado de Tests</h1>
           <h5>Antonia Alberston</h5>
         </div>
       </nav>
       <hr color='#18206F'/>
-      <div className={styles.contenedorCampos}>
-         <button><CiFileOn />Tipos de aprendizaje</button>
+      <div className={styles.contenedorCampos2}>
+         <a className={styles1.cardTest} href="./TEST.pdf" download title="Descargar archivo">
+          <div className={styles1.iconoTest}>
+            <HiDocumentText/>
+          </div>
+          <div className={styles1.tituloTest}>
+            <hr/>
+            Tipo de aprendizaje
+          </div>
+         </a>
+         <a className={styles1.cardTest} onClick={()=>{
+          Swal.fire({
+            title: 'Seleccionar archivo PDF del test',
+            input: 'file',
+            inputAttributes: {
+              'accept': 'pdf/*'
+            }
+          })
+         }}>
+          <div className={styles1.iconoTest}>
+            <HiDocumentAdd/>
+          </div>
+          <div className={styles1.tituloTest}>
+            <hr/>
+            Solicitar nuevo test
+          </div>
+         </a>
       </div>
     </div>
   )

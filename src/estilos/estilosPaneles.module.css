@@ -40,6 +40,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 20px;
+    padding-inline: 50px;
 }
 .headerAlumnos{
     grid-column: 1/3;
@@ -75,4 +76,25 @@
     padding: 10px;
     border-radius: 15px;
     text-align: center;
+}
+
+.cardTest{
+    cursor: pointer;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+.iconoTest{
+    font-size: 20vh;
+    color: #18206F;
+    line-height: 0;
+}
+
+.tituloTest{
+    font-size:x-large;
+    margin: 20px;
+    color: black;
 }

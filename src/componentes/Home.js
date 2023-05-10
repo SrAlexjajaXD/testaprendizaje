@@ -88,7 +88,12 @@ function Home() {
           </button>
           <button onClick={() =>{
              handleSubmit3()
-             Swal.fire({icon:"success", title:"Registro guardado", text:form.nombre +" tus datos ya estan guardados"}).then((result) => {
+             Swal.fire({
+              icon:"success", 
+              title:"Registro guardado", 
+              text:form.nombre +" tus datos ya estan guardados"
+            })
+            .then((result) => {
               if (result.isConfirmed) {
                   window.location.href = "/"
               }})

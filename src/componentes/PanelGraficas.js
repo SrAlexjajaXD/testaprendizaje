@@ -33,7 +33,7 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
     <hr color='#18206F' />
           
 
-          <ResponsiveContainer width={1300} height={500}>
+          <ResponsiveContainer width={1400} height={500}>
       <PieChart >
         <Pie 
         data={data} 
