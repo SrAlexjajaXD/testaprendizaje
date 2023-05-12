@@ -1,5 +1,6 @@
 import { AiOutlineUser } from "react-icons/ai";
 import styles from '../estilos/Home.module.css';
+import styles2 from '../estilos/Preguntas.module.css'
 import { fondo } from "../App";
 import { useState } from "react"
 import preguntas from "./preguntas"
@@ -75,14 +76,15 @@ function Home() {
 
   
     return (
-      <main className="app">
+      <main className={styles.Inicio}>
         <div className="juego-terminado">
-          <span>
+          <div>
+            <div className={styles.grafica}><div className={styles.valorGrafica}></div></div>
             {" "}
             Auditivo {puntuacionA} de {preguntas.length}{" "}<br />
             Visual {puntuacionV} de {preguntas.length}{" "}<br />
             Kinestesico {puntuacionK} de {preguntas.length}{" "}
-          </span>
+          </div>
           <button onClick={() => (window.location.href = "/")}>
             Volver a jugar
           </button>
@@ -141,19 +143,19 @@ function Home() {
 
   if (stared == 3)/* En esta parte es donde se muestra pregunta por pregunta avanzando automaticamente despues de seleccionar la respuesta */
     return (
-      <main className="app">
-        <div className="lado-izquierdo">
-          <div className="titulo-pregunta">
+      <main className={styles2.panel}>
+          <div className={styles2.tituloPregunta}>
             {preguntas[preguntaActual].titulo}
           </div>
-        </div>
-        <div className="lado-derecho">
+        
+        <div className={styles2.opcionesPreguntas}>
           {preguntas[preguntaActual].opciones.map((respuesta) => (
-            <button
+            <button className={styles2.botonesRespuesta}
               key={respuesta.textoRespuesta}
               onClick={(e) => handleAnswerSubmit(respuesta.getTipo, e)}
             >
               {respuesta.textoRespuesta}
+              <img src={respuesta.ruta} className={styles2.imgOpciones} ></img>
             </button>
           ))}
         </div>

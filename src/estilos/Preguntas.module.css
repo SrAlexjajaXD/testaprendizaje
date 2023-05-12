@@ -1,0 +1,98 @@
+
+
+.panel{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 75%;
+    height: 60%;
+    margin: auto;
+    border-radius: 20px;
+    background-color: #ADF7B6;
+    text-align: center;
+    padding-block: 3%;
+    padding-inline: 3%;
+}
+
+.panel2{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 90%;
+    height: 80%;
+    margin: auto;
+    border-radius: 20px;
+    background-color: #ADF7B6;
+    text-align: center;
+    padding-block: 3%;
+    padding-inline: 3%; 
+}
+
+.panelPreguntas{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tituloPregunta{
+    font-family: 'Knewave', cursive;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: max-content;
+    margin: auto;
+    text-align: center;
+    padding-block: 1%;
+    padding-inline: 3%;
+    font-size: 40px;
+}
+
+.opcionesPreguntas{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: max-content;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: 1rem;
+    justify-content: center;
+}
+
+.imgOpciones{
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    margin: 5%;
+}
+
+.botonesRespuesta{
+    margin: 50px;
+}
+
+
+.panelResultado{
+    display: flex;
+    justify-content: start;
+}
+
+.panelBoton{
+    display: flex;
+    justify-content: end;
+    
+}
+
+.juego{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}

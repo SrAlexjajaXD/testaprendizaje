@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { helpHttp } from "../helpers/helpHttp";
 import { useFetch } from "./useFetch";
 
 
@@ -11,6 +10,7 @@ export const useForm = (initialForm, validateForm) => {
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const [response, setResponse] = useState(null);
+    const [editable, setEditable] = useState(true)
 
     const {data}=useFetch
 
@@ -71,6 +71,15 @@ export const useForm = (initialForm, validateForm) => {
         }
     };
 
+
+    const handleSubmitPatch = async (e) => {
+        e.preventDefault();
+
+        setEditable(!editable)
+
+        setErrors(validateForm(form));
+    };
+
     const handleSubmit3 = async (e) => {
         await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos', data: {
                 id_docente: form.id_docente,
@@ -91,10 +100,12 @@ export const useForm = (initialForm, validateForm) => {
         errors,
         loading,
         response,
+        editable,
         handleChange,
         handleBlur,
         handleSubmit1,
         handleSubmit2,
-        handleSubmit3
+        handleSubmit3,
+        handleSubmitPatch
     };
 };

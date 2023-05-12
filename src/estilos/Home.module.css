@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
 
-body{
+body {
   display: table;
 }
 
-.login{
+.login {
   margin-left: 30px;
   margin-top: 30px;
   font-size: xx-large;
-  cursor:pointer;
+  cursor: pointer;
   width: fit-content;
-  position:fixed;
+  position: fixed;
 }
 
-.btnInicioP{
+.btnInicioP {
   cursor: pointer;
 }
 
@@ -36,7 +36,7 @@ body{
 }
 
 
-.cocky{
+.cocky {
   position: absolute;
   width: 14%;
   top: -70%;
@@ -46,7 +46,8 @@ body{
   margin: auto;
   transform: rotate(20deg);
 }
-.puky{
+
+.puky {
   position: absolute;
   width: 14%;
   top: 0;
@@ -56,7 +57,8 @@ body{
   margin: auto;
   transform: rotate(140deg);
 }
-.puky2{
+
+.puky2 {
   position: absolute;
   width: 14%;
   top: 0;
@@ -67,7 +69,7 @@ body{
   cursor: pointer;
 }
 
-.kuky{
+.kuky {
   position: absolute;
   width: 14%;
   top: -70%;
@@ -77,7 +79,7 @@ body{
   margin: auto;
 }
 
-.duky{
+.duky {
   position: absolute;
   width: 14%;
   top: 0;
@@ -87,7 +89,7 @@ body{
   margin: auto;
 }
 
-.diky{
+.diky {
   position: absolute;
   width: 14%;
   top: -70%;
@@ -96,7 +98,8 @@ body{
   right: 0;
   margin: auto;
 }
-.diky2{
+
+.diky2 {
   position: absolute;
   width: 14%;
   top: 0;
@@ -107,7 +110,7 @@ body{
   cursor: pointer;
 }
 
-.miky{
+.miky {
   position: absolute;
   width: 14%;
   top: 0;
@@ -117,8 +120,17 @@ body{
   margin: auto;
 }
 
-.inputs{
+.inputs {
   text-align: center;
   font-family: 'Knewave', cursive;
 
+}
+
+.grafica {
+  height: 3vh;
+  background-color: white;
+}
+
+.valorGrafica {
+  background-color: cadetblue;
 }
