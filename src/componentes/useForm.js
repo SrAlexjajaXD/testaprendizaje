@@ -12,7 +12,7 @@ export const useForm = (initialForm, validateForm) => {
     const [response, setResponse] = useState(null);
     const [editable, setEditable] = useState(true)
 
-    const {data}=useFetch
+    const { data } = useFetch
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -48,18 +48,24 @@ export const useForm = (initialForm, validateForm) => {
             setLoading(true);
             console.log(JSON.stringify(form))
 
-            await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes', data: {
-                nombre: form.nombre,
-                usuario: form.usuario,
-                escuela:form.escuela,
-                correo:form.correo,
-                contra:form.contra
-            }})
-            .then(function(respuesta){
-                console.log(respuesta.data);
-            }).catch(function(error){
-                console.log("ERROR EN LA SOLICITUD",error)
+
+            await axios({
+                method: 'POST', url: 'http://localhost:3001/docentes', data: {
+
+                    //OCUPEN ESTE PARA LA API *avisar para que se active*
+                    // await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes', data: {
+                    nombre: form.nombre,
+                    usuario: form.usuario,
+                    escuela: form.escuela,
+                    correo: form.correo,
+                    contra: form.contra
+                }
             })
+                .then(function (respuesta) {
+                    console.log(respuesta.data);
+                }).catch(function (error) {
+                    console.log("ERROR EN LA SOLICITUD", error)
+                })
 
             Swal.fire({ icon: "success", title: "Registro exitoso", text: "Ya puedes iniciar sesión" }).then((result) => {
                 if (result.isConfirmed) {
@@ -81,15 +87,20 @@ export const useForm = (initialForm, validateForm) => {
     };
 
     const handleSubmit3 = async (e) => {
-        await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos', data: {
+        await axios({
+            method: 'POST', url: 'http://localhost:3001/alumnos', data: {
+
+                //OCUPEN ESTE PARA LA API *avisar para que se active*
+                // await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos', data: {
                 id_docente: form.id_docente,
                 nombre: form.nombre,
-                tipo:form.tipo
-            }})
-            .then(function(respuesta){
+                tipo: form.tipo
+            }
+        })
+            .then(function (respuesta) {
                 console.log(respuesta.data);
-            }).catch(function(error){
-                console.log("ERROR EN LA SOLICITUD",error)
+            }).catch(function (error) {
+                console.log("ERROR EN LA SOLICITUD", error)
             })
 
     };

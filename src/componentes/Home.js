@@ -73,36 +73,57 @@ function Home() {
 
   if (isFinished) {/* Si esta finalizado el cuestionario, regresa la siguiente pantalla con los puntajes */
 
-
-  
     return (
       <main className={styles.Inicio}>
-        <div className="juego-terminado">
-          <div>
-            <div className={styles.grafica}><div className={styles.valorGrafica}></div></div>
-            {" "}
-            Auditivo {puntuacionA} de {preguntas.length}{" "}<br />
-            Visual {puntuacionV} de {preguntas.length}{" "}<br />
-            Kinestesico {puntuacionK} de {preguntas.length}{" "}
+        <div className={styles.personajeResultado}>
+          {form.tipo == "Auditivo" && <h1>Tu aprendizaje es "Auditivo" como nuestro amigo Kuky</h1>}
+          {form.tipo == "Visual" && <h1>Tu aprendizaje es "Visual" como nuestro amigo Duky</h1>}
+          {form.tipo == "Kinestesico" && <h1>Tu aprendizaje es "kinestésico" como nuestro amigo Miky</h1>}
+          {form.tipo == "Auditivo" && <img src={personajes(`./DUKY.png`)}></img>}
+          {form.tipo == "Visual" && <img src={personajes(`./KUKY.png`)}></img>}
+          {form.tipo == "Kinestesico" && <img src={personajes(`./MIKY.png`)}></img>}
+        </div>
+        <div className={styles.descripcion}>
+          {form.tipo == "Auditivo" && <p>¡Excelente {form.nombre}! disfrutas de los sonidos tanto como yo, usa esto a tu favor 
+            porque escuchar es algo muy bonito </p>}
+          {form.tipo == "Visual" && <p>¡Excelente {form.nombre}! tu vista es de los sentidos mas importantes, aprovechala porque 
+            tienes buena vista, sigue adelante pequeño observador </p>}
+          {form.tipo == "Kinestesico" && <p>¡Excelente {form.nombre}! Ahora ya sabes que aprendes más rápido cuando te mueves 
+            asi que sigue brincando, corriendo y bailando como siempre </p>}
+        </div>
+        <div className={styles.valoresResultados}>
+          <div className={styles.valor}>
+            <h2>{(puntuacionA * 100 / 12).toFixed(1)}%</h2>
+            <h5>Auditivo</h5>
           </div>
-          <button onClick={() => (window.location.href = "/")}>
-            Volver a jugar
-          </button>
-          <button onClick={() =>{
-             handleSubmit3()
-             Swal.fire({
-              icon:"success", 
-              title:"Registro guardado", 
-              text:form.nombre +" tus datos ya estan guardados"
-            })
+          <div className={styles.valor}>
+            <h2>{(puntuacionV * 100 / 12).toFixed(1)}%</h2>
+            <h5>Visual</h5>
+          </div>
+          <div className={styles.valor}>
+            <h2>{(puntuacionK * 100 / 12).toFixed(1)}%</h2>
+            <h5>kinestésico</h5>
+          </div>
+        </div>
+
+        <button onClick={() => (window.location.href = "/")}>
+          Volver a jugar
+        </button>
+        <button onClick={() => {
+          handleSubmit3()
+          Swal.fire({
+            icon: "success",
+            title: "Registro guardado",
+            text: form.nombre + " tus datos ya estan guardados"
+          })
             .then((result) => {
               if (result.isConfirmed) {
-                  window.location.href = "/"
-              }})
-            }}>
-            Enviar datos
-          </button>
-        </div>
+                window.location.href = "/"
+              }
+            })
+        }}>
+          Enviar datos
+        </button>
       </main>
     );
   }
@@ -111,7 +132,7 @@ function Home() {
       <div>
         <div className={styles.login} onClick={fondo(false)}><a href='/inicio'><AiOutlineUser color="black" /></a></div>
         <div>
-          
+
           <div className={styles.btnInicio} >
             <div className={styles.Inicio}>
               <input type="number" name="id_docente" className={styles.inputs} value={form.id_docente} onChange={handleChange} />
@@ -119,7 +140,7 @@ function Home() {
             </div>
           </div>
           <img src={personajes(`./PUKY2.png`)} className={styles.puky2} onClick={() => setStared(2)}></img>
-          <img src={personajes(`./DIKY2.png`)} className={styles.diky2} onClick={() => setStared(0)} alt="Pantalla anterior" title="Pagina anterior"/>
+          <img src={personajes(`./DIKY2.png`)} className={styles.diky2} onClick={() => setStared(0)} alt="Pantalla anterior" title="Pagina anterior" />
         </div>
       </div>
     );
@@ -136,7 +157,7 @@ function Home() {
             </div>
           </div>
           <img src={personajes(`./PUKY2.png`)} className={styles.puky2} onClick={() => setStared(3)}></img>
-          <img src={personajes(`./DIKY2.png`)} className={styles.diky2} onClick={() => setStared(1)} alt="Pantalla anterior" title="Pagina anterior"/>
+          <img src={personajes(`./DIKY2.png`)} className={styles.diky2} onClick={() => setStared(1)} alt="Pantalla anterior" title="Pagina anterior" />
         </div>
       </div>
     );
@@ -144,10 +165,10 @@ function Home() {
   if (stared == 3)/* En esta parte es donde se muestra pregunta por pregunta avanzando automaticamente despues de seleccionar la respuesta */
     return (
       <main className={styles2.panel}>
-          <div className={styles2.tituloPregunta}>
-            {preguntas[preguntaActual].titulo}
-          </div>
-        
+        <div className={styles2.tituloPregunta}>
+          {preguntas[preguntaActual].titulo}
+        </div>
+
         <div className={styles2.opcionesPreguntas}>
           {preguntas[preguntaActual].opciones.map((respuesta) => (
             <button className={styles2.botonesRespuesta}

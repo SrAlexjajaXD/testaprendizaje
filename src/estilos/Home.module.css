@@ -126,11 +126,15 @@ body {
 
 }
 
-.grafica {
-  height: 3vh;
-  background-color: white;
+.valoresResultados{
+  display: flex;
+  justify-content:space-around;
+  
 }
 
-.valorGrafica {
-  background-color: cadetblue;
+.valoresResultados h2{
+  line-height: 5px;
+}
+.valores{
+
 }

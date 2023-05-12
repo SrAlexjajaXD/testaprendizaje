@@ -9,9 +9,15 @@ function PanelAlumns() {
 
   const [data, setData] = useState(null)
 
-    axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos").then(response=>{
+    axios.get("http://localhost:3001/alumnos").then(response=>{
       setData(response.data)
     })
+
+
+    //OCUPEN ESTE PARA LA API *avisar para que se active*
+    // axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos").then(response=>{
+    //   setData(response.data)
+    // })
 
 
   return (

@@ -4,8 +4,6 @@ import styles from '../estilos/Perfil.module.css'
 import styles1 from '../estilos/estilosPaneles.module.css'
 import { useFetch } from './useFetch';
 import { useForm } from './useForm';
-import { Switch } from 'react-router-dom'
-
 
 
 
@@ -37,7 +35,10 @@ import { Switch } from 'react-router-dom'
   }
 
 function PanelPerfil() {
-  const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + 5857)
+  const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/" + 100)
+
+  //OCUPEN ESTE PARA LA API *avisar para que se active*
+  // const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + 5857)
 
   const initialForm = {
       id_docente: data.id_docente,
