@@ -28,13 +28,21 @@ export const useForm = (initialForm, validateForm) => {
         setErrors(validateForm(form));
     };
 
-    const handleSubmit1 = (e) => {
+    const handleSubmit1 = async (e) => {
         e.preventDefault();
         setErrors(validateForm(form));
 
         if (Object.keys(errors).length === 0) {
+            // await axios({
+            //     method: 'GET', url: 'http://localhost:3001/login/docentes/alexloga18@gmail.com'
+            // })
+            //     .then(function (respuesta) {
+            //         console.log(respuesta.data);
+            //     }).catch(function (error) {
+            //         console.log("ERROR EN LA SOLICITUD", error)
+            //     })
             window.location.href = "/dashboard"
-            //setForm(initialForm)
+            setForm(initialForm)
         } else {
             Swal.fire({ icon: "error", title: "Errores encontrados:", text: Object.values(errors) })
         }

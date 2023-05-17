@@ -3,23 +3,22 @@ import '../estilos/graficas.css';
 import { CiAlignLeft } from "react-icons/ci";
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 import styles1 from '../estilos/estilosPaneles.module.css'
-import { useFetch } from './useFetch';
 import axios from 'axios';
 
 const PanelGraficas = () => {
 
-  const [data, setData] = useState([])
+   const [data, setData] = useState([])
 
-    axios.get("http://localhost:3001/tipos/alumnos").then(response=>{
-      setData(response.data)
-    })
+  axios.get("http://localhost:3001/tipos/alumnos").then(response => {
+    setData(response.data)
+  })
 
 
-    //OCUPEN ESTE PARA LA API *avisar para que se active*
-    // const [data, setData] = useState([])
-    // axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/tipos/alumnos").then(response=>{
-    //   setData(response.data)
-    // })
+  //OCUPEN ESTE PARA LA API *avisar para que se active*
+  // const [data, setData] = useState([])
+  // axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/tipos/alumnos").then(response=>{
+  //   setData(response.data)
+  // })
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 

@@ -4,6 +4,7 @@ import "../estilos/Login.css"
 import { CiCircleChevLeft } from "react-icons/ci";
 import { useForm } from './useForm';
 
+
 const initialForm = {
   nombre: "",
   usuario: "",
@@ -29,7 +30,11 @@ const validationsForm = (form) => {
   return errors;
 }
 
-const Inicio = ()=> { /* Muestra en pantalla la seccion para que el usuario docente pueda iniciar sesión */
+function Inicio() { /* Muestra en pantalla la seccion para que el usuario docente pueda iniciar sesión */
+
+}
+
+function Navegacion(){ /* Muestra en pantalla la seccion para que el usuario docente pueda iniciar sesión */
 
 const { form,
   errors,
@@ -38,6 +43,10 @@ const { form,
   handleBlur,
   handleChange,
   handleSubmit1 } = useForm(initialForm, validationsForm)
+
+  const handleLogin = () =>{
+    localStorage.setItem('token', 'true')
+  }
 
   return (
     <div>
@@ -49,7 +58,14 @@ const { form,
         <form onSubmit={handleSubmit1}>
             <input placeholder="Correo electronico" name="correo" onBlur={handleBlur} onChange={handleChange} value={form.correo}></input><br/>
             <input placeholder="Contraseña" name="contraseña" type='password' onBlur={handleBlur} onChange={handleChange} value={form.contraseña}></input><br/>
-            <button type="submit">Iniciar sesión</button><br/>
+            
+            <button type="submit"
+            onClick={handleLogin}>
+              
+            Iniciar sesión
+            </button><br/>
+            
+            
             <a id='register' href='/register' color='#18206F'>Registrarse</a>
         </form>
       </div>
@@ -58,4 +74,5 @@ const { form,
   )
 }
 
-export default Inicio
+export default Navegacion
+export {Inicio}

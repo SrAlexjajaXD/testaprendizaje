@@ -34,11 +34,17 @@ import { useForm } from './useForm';
     return errors;
   }
 
-function PanelPerfil() {
-  const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/" + 100)
+const PanelPerfil =()=> {
+
+  const handleLogOut = () =>{
+    localStorage.removeItem('token')
+    window.open("/inicio", "_self")
+  }
+
+  // const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/" + 1024)
 
   //OCUPEN ESTE PARA LA API *avisar para que se active*
-  // const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + 5857)
+  const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + 5857)
 
   const initialForm = {
       id_docente: data.id_docente,
@@ -106,7 +112,7 @@ function PanelPerfil() {
             <button>Generar</button>
           </div>
           <div className={styles.botonesR} >
-            <button onClick={() => window.open("/inicio", "_self")}>Cerrar Sesión</button>
+            <button onClick={handleLogOut}>Cerrar Sesión</button>
           </div>
         </div>
       </form>
