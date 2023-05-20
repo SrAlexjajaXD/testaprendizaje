@@ -9,7 +9,7 @@ const PanelGraficas = () => {
 
    const [data, setData] = useState([])
 
-  axios.get("http://localhost:3001/tipos/alumnos").then(response => {
+  axios.get("http://localhost:3001/tipos/alumnos/"+localStorage.getItem('id')).then(response => {
     setData(response.data)
   })
 

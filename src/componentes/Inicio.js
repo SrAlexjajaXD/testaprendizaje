@@ -40,13 +40,14 @@ const { form,
   errors,
   loading,
   response,
-  handleBlur,
+  handleBlur2,
   handleChange,
   handleSubmit1 } = useForm(initialForm, validationsForm)
 
-  const handleLogin = () =>{
-    localStorage.setItem('token', 'true')
-  }
+  // const handleLogin = () =>{
+  //   localStorage.setItem('token', 'true')
+  //   localStorage.setItem('correo', form.correo)
+  // }
 
   return (
     <div>
@@ -56,11 +57,10 @@ const { form,
             <CiUser color='#18206F'/>
         </div>
         <form onSubmit={handleSubmit1}>
-            <input placeholder="Correo electronico" name="correo" onBlur={handleBlur} onChange={handleChange} value={form.correo}></input><br/>
-            <input placeholder="Contraseña" name="contraseña" type='password' onBlur={handleBlur} onChange={handleChange} value={form.contraseña}></input><br/>
+            <input placeholder="Correo electronico" name="correo" onBlur={handleBlur2} onChange={handleChange} value={form.correo}></input><br/>
+            <input placeholder="Contraseña" name="contraseña" type='password' onBlur={handleBlur2} onChange={handleChange} value={form.contraseña}></input><br/>
             
-            <button type="submit"
-            onClick={handleLogin}>
+            <button type="submit">
               
             Iniciar sesión
             </button><br/>

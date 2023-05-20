@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { CiFaceSmile } from "react-icons/ci";
 import styles1 from '../estilos/estilosPaneles.module.css'
 import axios from 'axios';
-import { useFetch } from './useFetch';
 
 function PanelAlumns() {
 
 
   const [data, setData] = useState(null)
 
-    axios.get("http://localhost:3001/alumnos").then(response=>{
+    axios.get("http://localhost:3001/alumnos/"+localStorage.getItem("id")).then(response=>{
       setData(response.data)
     })
 

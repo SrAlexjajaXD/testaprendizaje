@@ -38,13 +38,14 @@ const PanelPerfil =()=> {
 
   const handleLogOut = () =>{
     localStorage.removeItem('token')
+    localStorage.removeItem('id')
     window.open("/inicio", "_self")
   }
-
-  // const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/" + 1024)
+  const {correo}=useFetch("asdf")
+  const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/"+localStorage.getItem('id'))
 
   //OCUPEN ESTE PARA LA API *avisar para que se active*
-  const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + 5857)
+  // const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + 5857)
 
   const initialForm = {
       id_docente: data.id_docente,

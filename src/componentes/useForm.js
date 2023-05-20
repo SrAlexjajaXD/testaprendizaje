@@ -1,18 +1,17 @@
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useFetch } from "./useFetch";
 
 
 
 export const useForm = (initialForm, validateForm) => {
+    const [datos, setDatos] = useState([]);
     const [form, setForm] = useState(initialForm);
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const [response, setResponse] = useState(null);
     const [editable, setEditable] = useState(true)
 
-    const { data } = useFetch
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,21 +27,25 @@ export const useForm = (initialForm, validateForm) => {
         setErrors(validateForm(form));
     };
 
+    const handleBlur2 = (e) => {
+        handleChange(e);
+        setErrors(validateForm(form));
+        axios.get("http://localhost:3001/login/docentes/" + form.correo).then(response => {
+            setDatos(response.data)
+        })
+    };
+
     const handleSubmit1 = async (e) => {
         e.preventDefault();
         setErrors(validateForm(form));
-
         if (Object.keys(errors).length === 0) {
-            // await axios({
-            //     method: 'GET', url: 'http://localhost:3001/login/docentes/alexloga18@gmail.com'
-            // })
-            //     .then(function (respuesta) {
-            //         console.log(respuesta.data);
-            //     }).catch(function (error) {
-            //         console.log("ERROR EN LA SOLICITUD", error)
-            //     })
-            window.location.href = "/dashboard"
-            setForm(initialForm)
+            if (datos.contra === form.contraseña) {
+                window.location.href = "/dashboard"
+                localStorage.setItem('token', 'true')
+                localStorage.setItem('id', datos.id_docente)
+            } else {
+                Swal.fire({ icon: "error", title: "Datos incorrectos" })
+            }
         } else {
             Swal.fire({ icon: "error", title: "Errores encontrados:", text: Object.values(errors) })
         }
@@ -122,6 +125,7 @@ export const useForm = (initialForm, validateForm) => {
         editable,
         handleChange,
         handleBlur,
+        handleBlur2,
         handleSubmit1,
         handleSubmit2,
         handleSubmit3,

@@ -6,6 +6,8 @@ import { useState } from "react"
 import preguntas from "./preguntas"
 import { useForm } from "./useForm";
 import Swal from "sweetalert2";
+import { useFetch } from "./useFetch";
+import axios from "axios";
 
 const personajes = require.context('../../public/personajes', true)
 
@@ -37,21 +39,43 @@ function Home() {
   const [puntuacionV, setPuntuacionV] = useState(0);
   const [puntuacionK, setPuntuacionK] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [existe, setExiste] = useState(false)
 
   const { form,
-    errors,
-    loading,
-    response,
-    handleBlur,
     handleChange,
     handleSubmit3 } = useForm(initialForm, validationsForm);
 
 
+  const { data } = useFetch("http://localhost:3001/docentes/"+form.id_docente)
+
+
+    const handleBlurCodigo = ()=>{
+      axios.get("http://localhost:3001/docentes/" + form.id_docente).then(response => {
+            setExiste(true)
+        })
+      if (data.message==="Docente no encontrado") {
+        setExiste(false)
+      }else{
+        setExiste(true)
+      }
+    }
+
+
+
+
+  
+  function verifCodigo () {
+    if (!existe) {
+      Swal.fire({icon:"error", title:"Codigo inexistente", text:"El codigo de docente ingresado no existe, verifique el codigo o consulta a tu docente"})
+    }else {
+      setStared(2)
+    }
+  }
 
   function handleAnswerSubmit(getTipo, e) {
-    if (getTipo == 'A') setPuntuacionA(puntuacionA + 1); //En caso de que la respuesta sea tipo Auditivo, se sumara al puntuaje Auditivo
-    if (getTipo == 'V') setPuntuacionV(puntuacionV + 1); //En caso de que la respuesta sea tipo Visual, se sumara al puntuaje Visual
-    if (getTipo == 'K') setPuntuacionK(puntuacionK + 1); //En caso de que la respuesta sea tipo Kinestesico, se sumara al puntuaje Kinestesico
+    if (getTipo === 'A') setPuntuacionA(puntuacionA + 1); //En caso de que la respuesta sea tipo Auditivo, se sumara al puntuaje Auditivo
+    if (getTipo === 'V') setPuntuacionV(puntuacionV + 1); //En caso de que la respuesta sea tipo Visual, se sumara al puntuaje Visual
+    if (getTipo === 'K') setPuntuacionK(puntuacionK + 1); //En caso de que la respuesta sea tipo Kinestesico, se sumara al puntuaje Kinestesico
 
     if (preguntaActual === preguntas.length - 1) { //Si la pregunta actual es igual que la longitud de preguntas menos uno, entonces devuelve que el cuestionario finalizó
       setIsFinished(true);
@@ -76,12 +100,12 @@ function Home() {
     return (
       <main className={styles.Inicio}>
         <div className={styles.personajeResultado}>
-          {form.tipo == "Auditivo" && <h1>Tu aprendizaje es "Auditivo" como nuestro amigo Kuky</h1>}
-          {form.tipo == "Visual" && <h1>Tu aprendizaje es "Visual" como nuestro amigo Duky</h1>}
-          {form.tipo == "Kinestesico" && <h1>Tu aprendizaje es "kinestésico" como nuestro amigo Miky</h1>}
-          {form.tipo == "Auditivo" && <img src={personajes(`./DUKY.png`)}></img>}
-          {form.tipo == "Visual" && <img src={personajes(`./KUKY.png`)}></img>}
-          {form.tipo == "Kinestesico" && <img src={personajes(`./MIKY.png`)}></img>}
+          {form.tipo === "Auditivo" && <h1>Tu aprendizaje es "Auditivo" como nuestro amigo Kuky</h1>}
+          {form.tipo === "Visual" && <h1>Tu aprendizaje es "Visual" como nuestro amigo Duky</h1>}
+          {form.tipo === "Kinestesico" && <h1>Tu aprendizaje es "kinestésico" como nuestro amigo Miky</h1>}
+          {form.tipo === "Auditivo" && <img src={personajes(`./DUKY.png`)}></img>}
+          {form.tipo === "Visual" && <img src={personajes(`./KUKY.png`)}></img>}
+          {form.tipo === "Kinestesico" && <img src={personajes(`./MIKY.png`)}></img>}
         </div>
         <div className={styles.descripcion}>
           {form.tipo == "Auditivo" && <p>¡Excelente {form.nombre}! disfrutas de los sonidos tanto como yo, usa esto a tu favor 
@@ -135,11 +159,11 @@ function Home() {
 
           <div className={styles.btnInicio} >
             <div className={styles.Inicio}>
-              <input type="number" name="id_docente" className={styles.inputs} value={form.id_docente} onChange={handleChange} />
+              <input type="number" name="id_docente" className={styles.inputs} value={form.id_docente} onChange={handleChange} onBlur={handleBlurCodigo}/>
               <h1>Ingresa el codigo de tu maestro</h1>
             </div>
           </div>
-          <img src={personajes(`./PUKY2.png`)} className={styles.puky2} onClick={() => setStared(2)}></img>
+          <img src={personajes(`./PUKY2.png`)} className={styles.puky2} onClick={() => verifCodigo()}></img>
           <img src={personajes(`./DIKY2.png`)} className={styles.diky2} onClick={() => setStared(0)} alt="Pantalla anterior" title="Pagina anterior" />
         </div>
       </div>
