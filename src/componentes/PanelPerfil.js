@@ -3,67 +3,70 @@ import { CiUser } from "react-icons/ci";
 import styles from '../estilos/Perfil.module.css'
 import styles1 from '../estilos/estilosPaneles.module.css'
 import { useFetch } from './useFetch';
-import { useForm } from './useForm';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 
-
-
-  const validationsForm = (form) => {
-    let errors = {};
-    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-    let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
-
-    // if (!regexName.test(form.nombre)) {
-    //   errors.nombre = " El nombre sólo acepta letras y espacios en blanco";
-    // }
-
-    // if (form.nombre==null) {
-    //   errors.usuario = " El usuario es necesario";
-    // }
-
-    // if (form.nombre==null) {
-    //   errors.correo = " El correo electronico es necesario";
-    // } else if (!regexEmail.test(form.correo)) {
-    //   errors.correo = " El correo electronico no es valido";
-    // }
-
-    // if (form.nombre==null) {
-    //   errors.contra = " La contraseña es necesaria";
-    // }
-
-    return errors;
-  }
 
 const PanelPerfil =()=> {
+  const [editable, setEditable] = useState(true)
+  const [datos, setDatos] = useState({})
+
+  const toCancel =()=>{
+    window.location.href = "/dashboard"
+  }
 
   const handleLogOut = () =>{
     localStorage.removeItem('token')
     localStorage.removeItem('id')
     window.open("/inicio", "_self")
   }
-  const {correo}=useFetch("asdf")
+
+  const soliContra=()=>{
+    Swal.fire({icon:"warning", title:"Recuerda tu contraseña", text:"Ten cuidado al cambiar tu contraseña, en caso de ingresar algo en este campo recuerdalo muy bien para no tener problemas con tu futuro inicio de sesión"})
+  }
+
   const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/"+localStorage.getItem('id'))
+  const form=data
 
-  //OCUPEN ESTE PARA LA API *avisar para que se active*
-  // const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + 5857)
+  const handleSubmit= async (e)=>{
+    e.preventDefault()
+    setEditable(!editable)
 
-  const initialForm = {
-      id_docente: data.id_docente,
-      nombre: data.nombre,
-      usuario: data.usuario,
-      escuela: data.escuela,
-      correo: data.correo,
-      contra: data.contra
-    }
 
-  const { form,
-    errors,
-    loading,
-    response,
-    editable,
-    handleBlur,
-    handleChange,
-    handleSubmitPatch } = useForm(initialForm, validationsForm);
+    if (!editable) {
+      console.log(datos)
+          await axios({
+              method: 'PATCH', url: 'http://localhost:3001/docentes/1038', data: 
+
+                  //OCUPEN ESTE PARA LA API *avisar para que se active*
+                  // await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes', data: {
+                  
+                  datos
+              
+          })
+              .then(function (respuesta) {
+                  console.log(respuesta.data);
+              }).catch(function (error) {
+                  console.log("ERROR EN LA SOLICITUD", error)
+              })
+
+          Swal.fire({ icon: "success", title: "Actualización exitosa", text: "Tus datos han sido guardados exitosamente" }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.href = "/dashboard"
+              }
+          })
+  }
+    
+
+  }
+  const handleChange=(e)=>{
+    const { name, value } = e.target;
+
+        setDatos({...datos,
+            [name]: value,
+        });
+  }
 
 
   return (
@@ -81,39 +84,39 @@ const PanelPerfil =()=> {
         </div>
       </nav>
       <hr color='#18206F' />
-      <form onSubmit={handleSubmitPatch}>
+      <form onSubmit={handleSubmit}>
         <div className={styles.contenedorCampos}>
           <div className={styles.campo}>
-            <input className={styles.inputText} name='id_docente' type="text" value={data.id_docente} onBlur={handleBlur} onChange={handleChange} disabled={editable} />
+            <input className={styles.inputText} name='id_docente' type="text" placeholder={data.id_docente} value={datos.id_docente} disabled={true} />
           </div>
 
           <div className={styles.campo}>
-            <input className={styles.inputText} name='nombre' type="text" value={data.nombre} onBlur={handleBlur} onChange={handleChange} disabled={editable} />
+            <input className={styles.inputText} name='nombre' type="text" placeholder={data.nombre} value={datos.nombre}  onChange={handleChange} disabled={editable} />
           </div>
 
           <div className={styles.campo}>
-            <input className={styles.inputText} name='usuario' type="text" value={data.usuario} onBlur={handleBlur} onChange={handleChange} disabled={editable} />
+            <input className={styles.inputText} name='usuario' type="text" placeholder={data.usuario} value={datos.usuario}  onChange={handleChange} disabled={editable} />
           </div>
 
           <div className={styles.campo}>
-            <input className={styles.inputText} name='correo' type="email" value={data.correo} onBlur={handleBlur} onChange={handleChange} disabled={editable} />
+            <input className={styles.inputText} name='correo' type="text" placeholder={data.correo} value={datos.correo} onChange={handleChange} disabled={editable} />
           </div>
 
           <div className={styles.campo}>
-            <input className={styles.inputText} name='contra' type="password" value={data.contra} onBlur={handleBlur} onChange={handleChange} disabled={editable} />
+            <input className={styles.inputText} name='contra' type="password" placeholder="*******" value={datos.contra} onChange={handleChange} disabled={editable} onClick={soliContra}/>
           </div>
 
           <div className={styles.campo}>
-            <input className={styles.inputText} name='escuela' type="text" value={data.escuela} onBlur={handleBlur} onChange={handleChange} disabled={editable} />
+            <input className={styles.inputText} name='escuela' type="text" placeholder={data.escuela} value={datos.escuela} onChange={handleChange} disabled={editable} />
           </div>
         </div>
         <div className={styles.botones}>
           <div className={styles.botonesL}>
             <button type='submit'>{editable && "Editar"}{!editable && "Guardar"}</button>
-            <button>Generar</button>
+            {!editable && <button type='reset' onClick={toCancel}>Cancelar</button>}
           </div>
           <div className={styles.botonesR} >
-            <button onClick={handleLogOut}>Cerrar Sesión</button>
+            {editable && <button onClick={handleLogOut}>Cerrar Sesión</button>}
           </div>
         </div>
       </form>

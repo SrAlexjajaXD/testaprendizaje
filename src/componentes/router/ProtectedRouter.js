@@ -4,7 +4,7 @@ const ProtectedRouter = () => {
 
     let isLogged = localStorage.getItem('token')
     if(!isLogged){
-        return <Navigate to="/" />
+        return <Navigate to="/inicio" />
     }
 
   return (

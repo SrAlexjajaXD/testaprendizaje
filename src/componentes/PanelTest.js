@@ -4,8 +4,11 @@ import { HiDocumentText, HiDocumentAdd } from "react-icons/hi";
 import styles from '../estilos/Perfil.module.css';
 import styles1 from '../estilos/estilosPaneles.module.css'
 import Swal from 'sweetalert2';
+import { useFetch } from './useFetch';
 
 function PanelTest() {
+
+  const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/"+localStorage.getItem('id'))
   return (
     <div className={styles1.panel}>
       <nav className={styles1.encabezadoPanel}>
@@ -14,7 +17,7 @@ function PanelTest() {
         </div>
         <div className={styles1.encabezadoTitulos}>
           <h1>Listado de Tests</h1>
-          <h5>Antonia Alberston</h5>
+          <h5>{data.nombre}</h5>
         </div>
       </nav>
       <hr color='#18206F'/>

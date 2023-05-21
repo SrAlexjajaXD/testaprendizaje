@@ -91,10 +91,45 @@ export const useForm = (initialForm, validateForm) => {
 
     const handleSubmitPatch = async (e) => {
         e.preventDefault();
-
         setEditable(!editable)
+        if (!editable) {
+            if (Object.keys(errors).length === 0) {
+                setLoading(true);
+                console.log(JSON.stringify(form))
 
-        setErrors(validateForm(form));
+
+                await axios({
+                    method: 'PATCH', url: 'http://localhost:3001/docentes/1038', data: {
+
+                        //OCUPEN ESTE PARA LA API *avisar para que se active*
+                        // await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes', data: {
+                        nombre: form.nombre,
+                        usuario: form.usuario,
+                        escuela: form.escuela,
+                        correo: form.correo,
+                        contra: form.contra
+                    }
+                })
+                    .then(function (respuesta) {
+                        console.log(respuesta.data);
+                    }).catch(function (error) {
+                        console.log("ERROR EN LA SOLICITUD", error)
+                    })
+
+                Swal.fire({ icon: "success", title: "Actualización exitosa", text: "Tus datos han sido guardados exitosamente" }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/dashboard"
+                    }
+                })
+            } else {
+                Swal.fire({ icon: "error", title: "Errores encontrados:", text: Object.values(errors) })
+            }
+
+        }
+
+
+
+
     };
 
     const handleSubmit3 = async (e) => {
