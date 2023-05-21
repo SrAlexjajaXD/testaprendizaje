@@ -3,15 +3,15 @@ import '../estilos/graficas.css';
 import { CiAlignLeft } from "react-icons/ci";
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 import styles1 from '../estilos/estilosPaneles.module.css'
-import axios from 'axios';
 import { useFetch } from './useFetch';
+const personajes = require.context('../../public/personajes', true)
 
 const PanelGraficas = () => {
 
   const { data, loadingApi, error } = useFetch("http://localhost:3001/tipos/alumnos/"+localStorage.getItem('id'))
 
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+  const COLORS = ['#f26f4b', '#994c82', '#99d5ca', '#FF8042'];
 
   return (
     <div className={styles1.panel}>
@@ -27,8 +27,8 @@ const PanelGraficas = () => {
       <hr color='#18206F' />
 
 
-      <ResponsiveContainer width={1400} height={500}>
-        <PieChart >
+      <ResponsiveContainer height={500}>
+        <PieChart>
           <Pie
             data={data}
             dataKey="value"
@@ -57,6 +57,11 @@ const PanelGraficas = () => {
           <Tooltip />
         </PieChart>
       </ResponsiveContainer>
+      <div className={styles1.contenido2}>
+        <img src={personajes(`./DUKY.png`)} title='Soy DUKY y mi tipo de aprendizaje es auditivo'></img>
+        <img src={personajes(`./KUKY.png`)} title='Soy KUKY y mi tipo de aprendizaje es visual'></img>
+        <img src={personajes(`./MIKY.png`)} title='Soy MIKY y mi tipo de aprendizaje es kinéstesico'></img>
+      </div>
 
 
 

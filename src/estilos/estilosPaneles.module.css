@@ -42,6 +42,9 @@
     gap: 20px;
     padding-inline: 50px;
 }
+.contenido2{
+    text-align: center;
+}
 .headerAlumnos{
     grid-column: 1/3;
     display: flex;
