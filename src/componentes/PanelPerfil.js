@@ -37,7 +37,7 @@ const PanelPerfil =()=> {
     if (!editable) {
       console.log(datos)
           await axios({
-              method: 'PATCH', url: 'http://localhost:3001/docentes/1038', data: 
+              method: 'PATCH', url: 'http://localhost:3001/docentes/'+localStorage.getItem('id'), data: 
 
                   //OCUPEN ESTE PARA LA API *avisar para que se active*
                   // await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes', data: {
