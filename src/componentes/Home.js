@@ -84,13 +84,13 @@ function Home() {
     }
   }
 
-  if (puntuacionA > puntuacionV) {
+  if (puntuacionA > puntuacionV || puntuacionA > puntuacionK) {
     form.tipo = "Auditivo"
 
-  } else if (puntuacionV > puntuacionK) {
+  } else if (puntuacionV > puntuacionK || puntuacionV > puntuacionA) {
     form.tipo = "Visual"
 
-  } else if (puntuacionK > puntuacionA) {
+  } else if (puntuacionK > puntuacionA || puntuacionK > puntuacionV) {
     form.tipo = "Kinestesico"
 
   }

@@ -27,21 +27,21 @@ function fondo(camb) {
 function App() { /* Funcion que retorna la renderizacion de acuerdo a la ruta estblecida en la URL */
   return (
     <BrowserRouter>
-    <Routes>
-    {/** NO PROTEGIDAS */}
-    <Route path="/" element={< Home/>} />
-    <Route path="/inicio" element={<Inicio/>}/>
-    <Route path="*" element={<Navigate to="/" /> } />
-    <Route path="/register" element={<Registrar />} />
+      <Routes>
+        {/** NO PROTEGIDAS */}
+        <Route path="/" element={< Home />} />
+        <Route path="/inicio" element={<Inicio />} />
+        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/register" element={<Registrar />} />
 
-    {/** PROTEGIDAS */}
-    <Route element={<ProtectedRouter/>}> 
-    
-    <Route path="/dashboard" element={<Dashboard/>}/>
-    </Route>
-    
-  </Routes>
-</BrowserRouter>
+        {/** PROTEGIDAS */}
+        <Route element={<ProtectedRouter />}>
+
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
   )
 }
 
