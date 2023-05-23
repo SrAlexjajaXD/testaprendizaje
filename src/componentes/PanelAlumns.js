@@ -9,17 +9,18 @@ function PanelAlumns() {
 
   const [datas, setdatas] = useState(null)
 
-    axios.get("http://localhost:3001/alumnos/"+localStorage.getItem("id")).then(response=>{
-      setdatas(response.data)
-    })
+  axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos/"+localStorage.getItem("id")).then(response=>{
+    setdatas(response.data)
+  })
 
-    const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/"+localStorage.getItem('id'))
+  const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/"+localStorage.getItem('id'))
 
 
-    //OCUPEN ESTE PARA LA API *avisar para que se active*
-    // axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos").then(response=>{
-    //   setdatas(response.datas)
+    // axios.get("http://localhost:3001/alumnos/"+localStorage.getItem("id")).then(response=>{
+    //   setdatas(response.data)
     // })
+
+    // const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/"+localStorage.getItem('id'))
 
 
   return (

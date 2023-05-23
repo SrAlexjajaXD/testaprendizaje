@@ -26,7 +26,9 @@ const PanelPerfil =()=> {
     Swal.fire({icon:"warning", title:"Recuerda tu contraseña", text:"Ten cuidado al cambiar tu contraseña, en caso de ingresar algo en este campo recuerdalo muy bien para no tener problemas con tu futuro inicio de sesión"})
   }
 
-  const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/"+localStorage.getItem('id'))
+  // const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/"+localStorage.getItem('id'))
+  const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/"+localStorage.getItem('id'))
+
   const form=data
 
   const handleSubmit= async (e)=>{
@@ -37,13 +39,9 @@ const PanelPerfil =()=> {
     if (!editable) {
       console.log(datos)
           await axios({
-              method: 'PATCH', url: 'http://localhost:3001/docentes/'+localStorage.getItem('id'), data: 
+              method: 'PATCH', url: 'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/'+localStorage.getItem('id'), data: datos 
+              // method: 'PATCH', url: 'http://localhost:3001/docentes/'+localStorage.getItem('id'), data: datos              
 
-                  //OCUPEN ESTE PARA LA API *avisar para que se active*
-                  // await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes', data: {
-                  
-                  datos
-              
           })
               .then(function (respuesta) {
                   console.log(respuesta.data);

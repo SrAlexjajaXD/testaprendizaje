@@ -8,7 +8,9 @@ const personajes = require.context('../../public/personajes', true)
 
 const PanelGraficas = () => {
 
-  const { data, loadingApi, error } = useFetch("http://localhost:3001/tipos/alumnos/"+localStorage.getItem('id'))
+  const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/tipos/alumnos/"+localStorage.getItem('id'))
+
+  //const { data, loadingApi, error } = useFetch("http://localhost:3001/tipos/alumnos/"+localStorage.getItem('id'))
 
 
   const COLORS = ['#f26f4b', '#994c82', '#99d5ca', '#FF8042'];

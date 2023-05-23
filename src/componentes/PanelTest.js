@@ -8,7 +8,9 @@ import { useFetch } from './useFetch';
 
 function PanelTest() {
 
-  const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/"+localStorage.getItem('id'))
+  const { data, loadingApi, error } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/"+localStorage.getItem('id'))
+  // const { data, loadingApi, error } = useFetch("http://localhost:3001/docentes/"+localStorage.getItem('id'))
+
   return (
     <div className={styles1.panel}>
       <nav className={styles1.encabezadoPanel}>

@@ -30,9 +30,12 @@ export const useForm = (initialForm, validateForm) => {
     const handleBlur2 = (e) => {
         handleChange(e);
         setErrors(validateForm(form));
-        axios.get("http://localhost:3001/login/docentes/" + form.correo).then(response => {
+        axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/login/docentes/" + form.correo).then(response => {
             setDatos(response.data)
         })
+        // axios.get("http://localhost:3001/login/docentes/" + form.correo).then(response => {
+        //     setDatos(response.data)
+        // })
     };
 
     const handleSubmit1 = async (e) => {
@@ -61,16 +64,20 @@ export const useForm = (initialForm, validateForm) => {
 
 
             await axios({
-                method: 'POST', url: 'http://localhost:3001/docentes', data: {
-
-                    //OCUPEN ESTE PARA LA API *avisar para que se active*
-                    // await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes', data: {
+                method: 'POST', url: 'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes', data: {
                     nombre: form.nombre,
                     usuario: form.usuario,
                     escuela: form.escuela,
                     correo: form.correo,
                     contra: form.contra
                 }
+                // method: 'POST', url: 'http://localhost:3001/docentes', data: {
+                //     nombre: form.nombre,
+                //     usuario: form.usuario,
+                //     escuela: form.escuela,
+                //     correo: form.correo,
+                //     contra: form.contra
+                // }
             })
                 .then(function (respuesta) {
                     console.log(respuesta.data);
@@ -99,16 +106,20 @@ export const useForm = (initialForm, validateForm) => {
 
 
                 await axios({
-                    method: 'PATCH', url: 'http://localhost:3001/docentes/1038', data: {
-
-                        //OCUPEN ESTE PARA LA API *avisar para que se active*
-                        // await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes', data: {
+                    method: 'PATCH', url: 'https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/1038', data: {
                         nombre: form.nombre,
                         usuario: form.usuario,
                         escuela: form.escuela,
                         correo: form.correo,
                         contra: form.contra
                     }
+                    // method: 'PATCH', url: 'http://localhost:3001/docentes/1038', data: {
+                    //     nombre: form.nombre,
+                    //     usuario: form.usuario,
+                    //     escuela: form.escuela,
+                    //     correo: form.correo,
+                    //     contra: form.contra
+                    // }
                 })
                     .then(function (respuesta) {
                         console.log(respuesta.data);
@@ -134,14 +145,16 @@ export const useForm = (initialForm, validateForm) => {
 
     const handleSubmit3 = async (e) => {
         await axios({
-            method: 'POST', url: 'http://localhost:3001/alumnos', data: {
-
-                //OCUPEN ESTE PARA LA API *avisar para que se active*
-                // await axios({method:'POST', url:'https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos', data: {
+            method: 'POST', url: 'https://nodejs-restapi-test-mysql-production.up.railway.app/alumnos', data: {
                 id_docente: form.id_docente,
                 nombre: form.nombre,
                 tipo: form.tipo
             }
+            // method: 'POST', url: 'http://localhost:3001/alumnos', data: {
+            //     id_docente: form.id_docente,
+            //     nombre: form.nombre,
+            //     tipo: form.tipo
+            // }
         })
             .then(function (respuesta) {
                 console.log(respuesta.data);
