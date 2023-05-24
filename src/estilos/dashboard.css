@@ -71,13 +71,14 @@
     .navegacion{
         position: absolute;
         bottom: 0px;
-        background-color: #f1f1ef;
-        border-radius:50px;
+        border-radius:30px 30px 0px 0px;
         text-align: center;
         height: auto;
-        width: 80vw;
-        margin: 25px;
-        padding: 20px;
+        margin-inline: 0px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        width: 90vw;
+        padding: 3.5%;
     }
     #centrar{
         display:flex;
@@ -85,5 +86,10 @@
         flex-wrap: wrap;
         justify-content: space-around;
         align-content: space-around;
+    }
+    .btnNav{
+        margin-block: 0;
+        padding-block: 5px;
+        font-size:1vh;
     }
   }
