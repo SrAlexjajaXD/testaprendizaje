@@ -46,13 +46,18 @@ function Home() {
     handleSubmit3 } = useForm(initialForm, validationsForm);
 
 
-  const { data } = useFetch("http://localhost:3001/docentes/"+form.id_docente)
+  const { data } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/"+form.id_docente)
+    // const { data } = useFetch("http://localhost:3001/docentes/"+form.id_docente)
+
 
 
     const handleBlurCodigo = ()=>{
-      axios.get("http://localhost:3001/docentes/" + form.id_docente).then(response => {
+      axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + form.id_docente).then(response => {
             setExiste(true)
         })
+        // axios.get("http://localhost:3001/docentes/" + form.id_docente).then(response => {
+        //     setExiste(true)
+        // })
       if (data.message==="Docente no encontrado") {
         setExiste(false)
       }else{
