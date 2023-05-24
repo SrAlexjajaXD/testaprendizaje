@@ -67,3 +67,23 @@
     padding-block: 10px;
 }
 
+@media only screen and (max-width: 630px) {
+    .navegacion{
+        position: absolute;
+        bottom: 0px;
+        background-color: #f1f1ef;
+        border-radius:50px;
+        text-align: center;
+        height: auto;
+        width: 80vw;
+        margin: 25px;
+        padding: 20px;
+    }
+    #centrar{
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-content: space-around;
+    }
+  }

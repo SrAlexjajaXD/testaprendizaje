@@ -78,34 +78,57 @@ function Home() {
   }
 
   function handleAnswerSubmit(getTipo, e) {
-    if (getTipo === 'A') setPuntuacionA(puntuacionA + 1); //En caso de que la respuesta sea tipo Auditivo, se sumara al puntuaje Auditivo
-    if (getTipo === 'V') setPuntuacionV(puntuacionV + 1); //En caso de que la respuesta sea tipo Visual, se sumara al puntuaje Visual
-    if (getTipo === 'K') setPuntuacionK(puntuacionK + 1); //En caso de que la respuesta sea tipo Kinestesico, se sumara al puntuaje Kinestesico
+    if (getTipo === 'A') {
+      setPuntuacionA(puntuacionA + 1); //En caso de que la respuesta sea tipo Auditivo, se sumara al puntuaje Auditivo
+      // form.tipo="Auditivo"
+    } 
+    if (getTipo === 'V'){
+      setPuntuacionV(puntuacionV + 1); //En caso de que la respuesta sea tipo Visual, se sumara al puntuaje Visual
+      // form.tipo="Visual"
+    } 
+    if (getTipo === 'K') {
+      setPuntuacionK(puntuacionK + 1); //En caso de que la respuesta sea tipo Kinestesico, se sumara al puntuaje Kinestesico
+      // form.tipo="Kinestesico"
+    }
+
+    if (puntuacionA >= puntuacionV & puntuacionA >= puntuacionK) {
+          form.tipo = "Auditivo"
+      
+        }
+         else if (puntuacionV >= puntuacionK & puntuacionV >= puntuacionA) {
+          form.tipo = "Visual"
+      
+        }
+        else if (puntuacionK >= puntuacionA & puntuacionK >= puntuacionV) {
+          form.tipo = "Kinestesico"
+      
+         }
 
     if (preguntaActual === preguntas.length - 1) { //Si la pregunta actual es igual que la longitud de preguntas menos uno, entonces devuelve que el cuestionario finalizó
       setIsFinished(true);
     } else {
       setPreguntaActual(preguntaActual + 1); //Si no, se suma en uno el numero de preguntas que lleva
     }
+    
   }
 
-  if (puntuacionA > puntuacionV || puntuacionA > puntuacionK) {
-    form.tipo = "Auditivo"
-
-  }
-  if (puntuacionV > puntuacionK || puntuacionV > puntuacionA) {
-    form.tipo = "Visual"
-
-  }
-  if (puntuacionK > puntuacionA || puntuacionK > puntuacionV) {
-    form.tipo = "Kinestesico"
-
-  }
+  
 
   if (isFinished) {/* Si esta finalizado el cuestionario, regresa la siguiente pantalla con los puntajes */
+// if (puntuacionA > puntuacionV || puntuacionA > puntuacionK) {
+//     form.tipo = "Auditivo"
 
+//   }
+//    else if (puntuacionV > puntuacionK || puntuacionV > puntuacionA) {
+//     form.tipo = "Visual"
+
+//   }
+//   else if (puntuacionK > puntuacionA || puntuacionK > puntuacionV) {
+//     form.tipo = "Kinestesico"
+
+//   }
     return (
-      <main className={styles.Inicio}>
+      <main className={styles2.panel}>
         <div className={styles.personajeResultado}>
           {form.tipo === "Auditivo" && <h1>Tu aprendizaje es "Auditivo" como nuestro amigo Kuky</h1>}
           {form.tipo === "Visual" && <h1>Tu aprendizaje es "Visual" como nuestro amigo Duky</h1>}

@@ -32,7 +32,7 @@ body {
   text-align: center;
   padding-block: 3%;
   padding-inline: 3%;
-  font-size: 26px;
+  font-size: 2vh;
 }
 
 
@@ -60,7 +60,7 @@ body {
 
 .puky2 {
   position: absolute;
-  width: 14%;
+  width: 20%;
   top: 0;
   bottom: -40%;
   left: 65%;
@@ -101,9 +101,9 @@ body {
 
 .diky2 {
   position: absolute;
-  width: 14%;
+  width: 20%;
   top: 0;
-  bottom: -36%;
+  bottom: -40%;
   left: -65%;
   right: 0;
   margin: auto;
@@ -123,7 +123,7 @@ body {
 .inputs {
   text-align: center;
   font-family: 'Knewave', cursive;
-
+  width: 80%;
 }
 
 .valoresResultados{
@@ -134,7 +134,4 @@ body {
 
 .valoresResultados h2{
   line-height: 5px;
-}
-.valores{
-
 }

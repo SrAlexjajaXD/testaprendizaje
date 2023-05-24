@@ -30,6 +30,7 @@ a{
     width: auto;
     height: max-content;
     margin: auto;
+    padding-block: 5%;
     text-align: center;
     color: #18206F;
 }

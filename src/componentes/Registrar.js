@@ -71,6 +71,7 @@ const Registrar = () => { /* Muestra en pantalla la seccion para que el usuario 
           <input placeholder="Contraseña" name="contra" type='password' onBlur={handleBlur} onChange={handleChange} value={form.contra}  />
           <input placeholder="Repite contraseña" name="contraseña2" type='password' onBlur={handleBlur} onChange={handleChange} value={form.contraseña2} /><br />
           <button type='submit'>Registrarse</button><br />
+          <a id='register' href='/inicio' color='#18206F'>Regresar</a>
         </form>
       </div>
     </div>
