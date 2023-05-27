@@ -33,7 +33,7 @@ export const useForm = (initialForm, validateForm) => {
         axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/login/docentes/" + form.correo).then(response => {
             setDatos(response.data)
         }).catch(function (error) {
-            Swal.fire({ icon: "error", title: "Error en el servidor", text:"Contacta a los desarrolladores para solucionar el problema" })
+            console.log("ERROR EN LA SOLICITUD", error)
         })
         // axios.get("http://localhost:3001/login/docentes/" + form.correo).then(response => {
         //     setDatos(response.data)
