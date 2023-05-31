@@ -159,7 +159,7 @@ function Home() {
 
     //   }
     return (
-      <main className={styles2.panel}>
+      <main className={styles2.panelF}>
         <div className={styles.personajeResultado}>
           {form.tipo === "Auditivo" && <h1>Tu aprendizaje es "Auditivo" como nuestro amigo Kuky</h1>}
           {form.tipo === "Visual" && <h1>Tu aprendizaje es "Visual" como nuestro amigo Duky</h1>}

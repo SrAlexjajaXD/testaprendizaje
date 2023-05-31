@@ -12,7 +12,13 @@
     align-content: center;
     justify-content: center;
 }
-
+.panelF{
+    margin:10%;
+    padding: 5%;
+    border-radius: 30px;
+    background-color: #ADF7B6;
+    text-align: center;
+}
 .panel2{
     position: absolute;
     top: 0;

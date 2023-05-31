@@ -97,7 +97,7 @@ const { form,
           <td>Fátima Liyoneth Abrego Roman</td>
           <td>Ciencia de datos para la toma de decisiones</td>
           <td>Base de datos</td>
-          <td>fatimaabregoroman@gmail.com</td>
+          <td>layoneth2000gmail.com</td>
         </tr>
         <tr style="border-bottom: 1px solid black; width: auto;">
           <td>José Manuel Gómez Vega</td>
