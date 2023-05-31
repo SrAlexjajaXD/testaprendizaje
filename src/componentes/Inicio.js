@@ -1,8 +1,11 @@
 import React from 'react'
-import { CiUser } from "react-icons/ci";
+import { CiUser, CiCircleChevLeft, CiCircleQuestion } from "react-icons/ci";
 import "../estilos/Login.css"
-import { CiCircleChevLeft } from "react-icons/ci";
 import { useForm } from './useForm';
+import Swal from 'sweetalert2';
+
+const personajes = require.context('../../public/personajes', true)
+
 
 
 const initialForm = {
@@ -49,9 +52,74 @@ const { form,
   //   localStorage.setItem('correo', form.correo)
   // }
 
+  const tableHtml = `
+    <table  style="border-collapse: collapse; width: auto;">
+      <thead>
+        <tr style="background-color: #f2f2f2; width: auto;">
+          <th>Nombre</th>
+          <th>Especialidad</th>
+          <th>Cargo</th>
+          <th>Correo Electrónico</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid black; width: auto;">
+          <td>Alex Lozano García</td>
+          <td>Desarrollo web empresarial</td>
+          <td>Backend y Frontend</td>
+          <td>alexloga2001@gmail.com</td>
+        </tr>
+        <tr style="border-bottom: 1px solid black; width: auto;">
+          <td>Diana González Almazán</td>
+          <td>Desarrollo web empresarial</td>
+          <td>Backend y Frontend</td>
+          <td>diana13gonzalez6@gmail.com</td>
+        </tr>
+        <tr style="border-bottom: 1px solid black; width: auto;">
+          <td>Joseph Emmanuel Ríos Hernández</td>
+          <td>Desarrollo web empresarial</td>
+          <td>Frontend y Documentación</td>
+          <td>josephemmanuelriosher@gmail.com</td>
+        </tr>
+        <tr style="border-bottom: 1px solid black; width: auto;">
+          <td>Javier Flores Pineda</td>
+          <td>Desarrollo web empresarial</td>
+          <td>Frontend</td>
+          <td>xav.flores4@gmail.com</td>
+        </tr>
+        <tr style="border-bottom: 1px solid black; width: auto;">
+          <td>Araceli Abrego Román</td>
+          <td>Ciencia de datos para la toma de decisiones</td>
+          <td>Base de datos</td>
+          <td>araceliabregoroman@gmail.com</td>
+        </tr>
+        <tr style="border-bottom: 1px solid black; width: auto;">
+          <td>Fátima Liyoneth Abrego Roman</td>
+          <td>Ciencia de datos para la toma de decisiones</td>
+          <td>Base de datos</td>
+          <td>fatimaabregoroman@gmail.com</td>
+        </tr>
+        <tr style="border-bottom: 1px solid black; width: auto;">
+          <td>José Manuel Gómez Vega</td>
+          <td>Ciencia de datos para la toma de decisiones</td>
+          <td>Documentación y manuales</td>
+          <td>josemanuelgomes@gmail.com</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+
   return (
     <div>
       <div className="login"><a href='/'><CiCircleChevLeft color='#18206F'/></a></div>
+      <div className="help" onClick={()=>{
+        Swal.fire({icon:"info", title:"Acerca de los desarrolladores",
+      html:tableHtml,
+      customClass: {
+        content: 'my-swal-content'
+      }})
+      }}><CiCircleQuestion/></div>
+        <img src={personajes(`./LOOGO.png`)} className='logoEscuela'></img>
       <div className='Login'>
         <div className='logoInicio'>
             <CiUser color='#18206F'/>

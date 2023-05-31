@@ -2,7 +2,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import styles from '../estilos/Home.module.css';
 import styles2 from '../estilos/Preguntas.module.css'
 import { fondo } from "../App";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import preguntas from "./preguntas"
 import { useForm } from "./useForm";
 import Swal from "sweetalert2";
@@ -39,94 +39,125 @@ function Home() {
   const [puntuacionV, setPuntuacionV] = useState(0);
   const [puntuacionK, setPuntuacionK] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
-  const [existe, setExiste] = useState(false)
+  const [showAlert, setShowAlert] = useState(false);
+  const [existe, setExiste] = useState(false);
+  const [codigo, setCodigo] = useState("")
 
   const { form,
     handleChange,
     handleSubmit3 } = useForm(initialForm, validationsForm);
 
 
-  const { data } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/"+form.id_docente)
-    // const { data } = useFetch("http://localhost:3001/docentes/"+form.id_docente)
+  // const { data } = useFetch("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/"+form.id_docente)
+  // const { data } = useFetch("http://localhost:3001/docentes/"+form.id_docente)
 
 
 
-    const handleBlurCodigo = ()=>{
-      axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + form.id_docente).then(response => {
-            setExiste(true)
-        })
-        // axios.get("http://localhost:3001/docentes/" + form.id_docente).then(response => {
-        //     setExiste(true)
-        // })
-      if (data.message==="Docente no encontrado") {
-        setExiste(false)
-      }else{
-        setExiste(true)
-      }
+  // const handleBlurCodigo = ()=>{
+  //   axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + form.id_docente).then(response => {
+  //         setExiste(true)
+  //     })
+  //     // axios.get("http://localhost:3001/docentes/" + form.id_docente).then(response => {
+  //     //     setExiste(true)
+  //     // })
+  //   if (data.message==="Docente no encontrado") {
+  //     setExiste(false)
+  //   }else{
+  //     setExiste(true)
+  //   }
+  // }
+
+  useEffect(() => {
+    if (showAlert) {
+      let timerInterval
+      Swal.fire({
+        title: 'Verificando el código de tu docente',
+        timer: 2000, 
+        didOpen: () => {
+          Swal.showLoading()
+          timerInterval = setInterval(() => {
+          }, 100)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+          setShowAlert(false)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          Swal.fire({icon:"error", title:"Ocurrió un error", text:"Verifica tu código o tu conexión a internet"})
+        }
+      })
     }
+  }, [showAlert]);
 
-
-
-
-  
-  function verifCodigo () {
-    if (!existe) {
-      Swal.fire({icon:"error", title:"Codigo inexistente", text:"El codigo de docente ingresado no existe, verifique el codigo o consulta a tu docente"})
-    }else {
-      setStared(2)
+  useEffect(() => {
+    if (stared === 2) {
+      Swal.close();
     }
-  }
+  }, [stared]);
+
+  const verifCodigo = async () => {
+    setShowAlert(true)
+    // Simula un cambio en el estado cuando se hace clic en un botón
+    await axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + form.id_docente)
+    setStared(2)
+  };
+
+
+
+
 
   function handleAnswerSubmit(getTipo, e) {
     if (getTipo === 'A') {
       setPuntuacionA(puntuacionA + 1); //En caso de que la respuesta sea tipo Auditivo, se sumara al puntuaje Auditivo
       // form.tipo="Auditivo"
-    } 
-    if (getTipo === 'V'){
+    }
+    if (getTipo === 'V') {
       setPuntuacionV(puntuacionV + 1); //En caso de que la respuesta sea tipo Visual, se sumara al puntuaje Visual
       // form.tipo="Visual"
-    } 
+    }
     if (getTipo === 'K') {
       setPuntuacionK(puntuacionK + 1); //En caso de que la respuesta sea tipo Kinestesico, se sumara al puntuaje Kinestesico
       // form.tipo="Kinestesico"
     }
 
     if (puntuacionA >= puntuacionV & puntuacionA >= puntuacionK) {
-          form.tipo = "Auditivo"
-      
-        }
-         else if (puntuacionV >= puntuacionK & puntuacionV >= puntuacionA) {
-          form.tipo = "Visual"
-      
-        }
-        else if (puntuacionK >= puntuacionA & puntuacionK >= puntuacionV) {
-          form.tipo = "Kinestesico"
-      
-         }
+      form.tipo = "Auditivo"
+
+    }
+    else if (puntuacionV >= puntuacionK & puntuacionV >= puntuacionA) {
+      form.tipo = "Visual"
+
+    }
+    else if (puntuacionK >= puntuacionA & puntuacionK >= puntuacionV) {
+      form.tipo = "Kinestesico"
+
+    }
 
     if (preguntaActual === preguntas.length - 1) { //Si la pregunta actual es igual que la longitud de preguntas menos uno, entonces devuelve que el cuestionario finalizó
       setIsFinished(true);
     } else {
       setPreguntaActual(preguntaActual + 1); //Si no, se suma en uno el numero de preguntas que lleva
     }
-    
+
   }
 
-  
+
 
   if (isFinished) {/* Si esta finalizado el cuestionario, regresa la siguiente pantalla con los puntajes */
-// if (puntuacionA > puntuacionV || puntuacionA > puntuacionK) {
-//     form.tipo = "Auditivo"
+    // if (puntuacionA > puntuacionV || puntuacionA > puntuacionK) {
+    //     form.tipo = "Auditivo"
 
-//   }
-//    else if (puntuacionV > puntuacionK || puntuacionV > puntuacionA) {
-//     form.tipo = "Visual"
+    //   }
+    //    else if (puntuacionV > puntuacionK || puntuacionV > puntuacionA) {
+    //     form.tipo = "Visual"
 
-//   }
-//   else if (puntuacionK > puntuacionA || puntuacionK > puntuacionV) {
-//     form.tipo = "Kinestesico"
+    //   }
+    //   else if (puntuacionK > puntuacionA || puntuacionK > puntuacionV) {
+    //     form.tipo = "Kinestesico"
 
-//   }
+    //   }
     return (
       <main className={styles2.panel}>
         <div className={styles.personajeResultado}>
@@ -138,11 +169,11 @@ function Home() {
           {form.tipo === "Kinestesico" && <img src={personajes(`./MIKY.png`)}></img>}
         </div>
         <div className={styles.descripcion}>
-          {form.tipo == "Auditivo" && <p>¡Excelente {form.nombre}! disfrutas de los sonidos tanto como yo, usa esto a tu favor 
+          {form.tipo == "Auditivo" && <p>¡Excelente {form.nombre}! disfrutas de los sonidos tanto como yo, usa esto a tu favor
             porque escuchar es algo muy bonito </p>}
-          {form.tipo == "Visual" && <p>¡Excelente {form.nombre}! tu vista es de los sentidos mas importantes, aprovechala porque 
+          {form.tipo == "Visual" && <p>¡Excelente {form.nombre}! tu vista es de los sentidos mas importantes, aprovechala porque
             tienes buena vista, sigue adelante pequeño observador </p>}
-          {form.tipo == "Kinestesico" && <p>¡Excelente {form.nombre}! Ahora ya sabes que aprendes más rápido cuando te mueves 
+          {form.tipo == "Kinestesico" && <p>¡Excelente {form.nombre}! Ahora ya sabes que aprendes más rápido cuando te mueves
             asi que sigue brincando, corriendo y bailando como siempre </p>}
         </div>
         <div className={styles.valoresResultados}>
@@ -189,7 +220,7 @@ function Home() {
 
           <div className={styles.btnInicio} >
             <div className={styles.Inicio}>
-              <input type="number" name="id_docente" className={styles.inputs} value={form.id_docente} onChange={handleChange} onBlur={handleBlurCodigo}/>
+              <input type="number" name="id_docente" className={styles.inputs} value={form.id_docente} onChange={handleChange} />
               <h1>Ingresa el codigo de tu maestro</h1>
             </div>
           </div>

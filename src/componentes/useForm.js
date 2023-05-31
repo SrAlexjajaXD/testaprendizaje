@@ -11,6 +11,7 @@ export const useForm = (initialForm, validateForm) => {
     const [loading, setLoading] = useState(false);
     const [response, setResponse] = useState(null);
     const [editable, setEditable] = useState(true)
+    const [existe, setExiste] = useState(false);
 
 
     const handleChange = (e) => {
@@ -20,6 +21,23 @@ export const useForm = (initialForm, validateForm) => {
             ...form,
             [name]: value,
         });
+    };
+
+    const handleChangeCodigo = (e) => {
+        const { name, value } = e.target;
+
+        setForm({
+            ...form,
+            [name]: value,
+        });
+
+        axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/docentes/" + form.id_docente).then(response => {
+            setExiste(true)
+        })
+        // axios.get("http://localhost:3001/docentes/" + form.id_docente).then(response => {
+        //     setExiste(true)
+        // })
+
     };
 
     const handleBlur = (e) => {
@@ -32,8 +50,6 @@ export const useForm = (initialForm, validateForm) => {
         setErrors(validateForm(form));
         axios.get("https://nodejs-restapi-test-mysql-production.up.railway.app/login/docentes/" + form.correo).then(response => {
             setDatos(response.data)
-        }).catch(function (error) {
-            console.log("ERROR EN LA SOLICITUD", error)
         })
         // axios.get("http://localhost:3001/login/docentes/" + form.correo).then(response => {
         //     setDatos(response.data)
@@ -44,10 +60,12 @@ export const useForm = (initialForm, validateForm) => {
         e.preventDefault();
         setErrors(validateForm(form));
         if (Object.keys(errors).length === 0) {
-            if (datos.contra === form.contraseña) {
+            if (datos.contra === form.contraseña & datos.correo===form.correo) {
                 window.location.href = "/dashboard"
                 localStorage.setItem('token', 'true')
                 localStorage.setItem('id', datos.id_docente)
+            }else if(Object.keys(datos).length === 0){
+                Swal.fire({ icon: "error", title: "Error en el servidor", text:"Contacta a los desarrolladores" })
             } else {
                 Swal.fire({ icon: "error", title: "Datos incorrectos" })
             }
@@ -179,6 +197,7 @@ export const useForm = (initialForm, validateForm) => {
         handleSubmit1,
         handleSubmit2,
         handleSubmit3,
-        handleSubmitPatch
+        handleSubmitPatch,
+        handleChangeCodigo
     };
 };
